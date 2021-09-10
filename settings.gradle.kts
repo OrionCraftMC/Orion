@@ -11,3 +11,4 @@ pluginManagement {
 
 rootProject.name = "Orion"
 include("v1_7_10")
+include("v1_5_2")

@@ -5,6 +5,6 @@ plugins {
 }
 
 lightcraft {
-    clientVersion = ClientVersion.V1_7_10
+    clientVersion = ClientVersion.V1_5_2
     provideOptifineJarMod = true
 }
