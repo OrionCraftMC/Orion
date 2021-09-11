@@ -2,8 +2,8 @@
 	"package": "io.github.orioncraftmc.orion.version.v1_7_10.mixins.client",
 	"compatibilityLevel": "JAVA_16",
 	"client": [
-		"ClientInit_MixinMinecraft",
-		"MixinClientBrandRetriever"
+		"MinecraftMixin",
+		"ClientBrandRetrieverMixin"
 	],
 	"required": true
 }

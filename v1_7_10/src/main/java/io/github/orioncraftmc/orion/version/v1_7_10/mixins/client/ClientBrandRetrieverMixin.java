@@ -23,7 +23,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
 @Mixin(ClientBrandRetriever.class)
-public class MixinClientBrandRetriever {
+public class ClientBrandRetrieverMixin {
 
 	/**
 	 * @author OrionCraftMC - We change the client brand

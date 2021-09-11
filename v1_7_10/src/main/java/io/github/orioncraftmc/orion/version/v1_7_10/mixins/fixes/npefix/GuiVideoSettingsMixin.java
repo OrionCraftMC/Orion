@@ -15,7 +15,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.orioncraftmc.orion.version.v1_7_10.mixins.fixes;
+package io.github.orioncraftmc.orion.version.v1_7_10.mixins.fixes.npefix;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -29,7 +29,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(GuiVideoSettings.class)
-public class NpeFix_MixinGuiVideoSettings {
+public class GuiVideoSettingsMixin {
 
 	@Shadow
 	private FontRenderer fontRendererObj;

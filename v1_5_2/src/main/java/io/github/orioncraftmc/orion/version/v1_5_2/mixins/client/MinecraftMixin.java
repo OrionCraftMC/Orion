@@ -15,7 +15,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.orioncraftmc.orion.version.v1_7_10.mixins.client;
+package io.github.orioncraftmc.orion.version.v1_5_2.mixins.client;
 
 import io.github.orioncraftmc.orion.api.OrionCraft;
 import io.github.orioncraftmc.orion.api.OrionCraftConstants;
@@ -23,20 +23,23 @@ import io.github.orioncraftmc.orion.api.meta.ClientVersion;
 import net.minecraft.client.Minecraft;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
+import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Minecraft.class)
-public class ClientInit_MixinMinecraft {
+public class MinecraftMixin {
 
 	@Inject(method = "startGame", at = @At("HEAD"))
-	public void onStartGame(CallbackInfo ci) {
-		OrionCraft.INSTANCE.startGameEntrypoint(ClientVersion.MC_1_7_10);
+	private void onStartGame(CallbackInfo ci) {
+		//TODO: Provide bridges here
 	}
 
-	@ModifyArg(method = "startGame", at = @At(value = "INVOKE", target = "org/lwjgl/opengl/Display.setTitle(Ljava/lang/String;)V"), index = 0)
-	public String onSetDisplayTitle(String newTitle) {
+
+	@ModifyConstant(method = "main", constant = @Constant(stringValue = "Minecraft"))
+	private static String onSetFrameTitle(String original) {
+		OrionCraft.INSTANCE.startGameEntrypoint(ClientVersion.MC_1_5_2);
 		return OrionCraftConstants.INSTANCE.getClientTitle();
 	}
 
