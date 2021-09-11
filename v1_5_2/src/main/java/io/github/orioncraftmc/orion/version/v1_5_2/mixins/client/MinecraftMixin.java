@@ -43,4 +43,9 @@ public class MinecraftMixin {
 		return OrionCraftConstants.INSTANCE.getClientTitle();
 	}
 
+	@ModifyConstant(method = "loadScreen", constant = @Constant(stringValue = "/title/mojang.png"))
+	private String onSetMojangLogo(String original) {
+		return "/assets/orion/title/modern-mojang.png";
+	}
+
 }

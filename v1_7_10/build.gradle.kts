@@ -7,4 +7,8 @@ plugins {
 lightcraft {
     clientVersion = ClientVersion.V1_7_10
     provideOptifineJarMod = true
+
+    launch {
+        enableMixinsDebug = true
+    }
 }

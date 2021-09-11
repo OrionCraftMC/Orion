@@ -21,10 +21,14 @@ import io.github.orioncraftmc.orion.api.OrionCraft;
 import io.github.orioncraftmc.orion.api.OrionCraftConstants;
 import io.github.orioncraftmc.orion.api.meta.ClientVersion;
 import net.minecraft.client.Minecraft;
+import net.minecraft.util.ResourceLocation;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
+import org.spongepowered.asm.mixin.injection.ModifyConstant;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Minecraft.class)
@@ -38,6 +42,16 @@ public class MinecraftMixin {
 	@ModifyArg(method = "startGame", at = @At(value = "INVOKE", target = "org/lwjgl/opengl/Display.setTitle(Ljava/lang/String;)V"), index = 0)
 	public String onSetDisplayTitle(String newTitle) {
 		return OrionCraftConstants.INSTANCE.getClientTitle();
+	}
+
+	@Redirect(method = "<clinit>", at = @At(value = "NEW", target = "net/minecraft/util/ResourceLocation"))
+	private static ResourceLocation onMojangSplashCreation(String original) {
+		return new ResourceLocation("orion", "title/modern-mojang.png");
+	}
+
+	@ModifyConstant(method = "loadScreen", constant = @Constant(stringValue = "logo"))
+	private String onSetMojangLogo(String original) {
+		return "modern_logo";
 	}
 
 }
