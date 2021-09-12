@@ -20,6 +20,7 @@ package io.github.orioncraftmc.orion.version.v1_5_2.mixins.client;
 import io.github.orioncraftmc.orion.api.OrionCraft;
 import io.github.orioncraftmc.orion.api.OrionCraftConstants;
 import io.github.orioncraftmc.orion.api.meta.ClientVersion;
+import io.github.orioncraftmc.orion.version.v1_5_2.bridge.OneDotFiveBridgeProvider;
 import net.minecraft.client.Minecraft;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -33,7 +34,7 @@ public class MinecraftMixin {
 
 	@Inject(method = "startGame", at = @At("HEAD"))
 	private void onStartGame(CallbackInfo ci) {
-		//TODO: Provide bridges here
+		OrionCraft.INSTANCE.setOrionCraftBridgesEntrypoint(new OneDotFiveBridgeProvider());
 	}
 
 

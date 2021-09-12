@@ -20,6 +20,7 @@ package io.github.orioncraftmc.orion.version.v1_7_10.mixins.client;
 import io.github.orioncraftmc.orion.api.OrionCraft;
 import io.github.orioncraftmc.orion.api.OrionCraftConstants;
 import io.github.orioncraftmc.orion.api.meta.ClientVersion;
+import io.github.orioncraftmc.orion.version.v1_7_10.bridge.OneDotSevenBridgeProvider;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 import org.spongepowered.asm.mixin.Mixin;
@@ -37,6 +38,7 @@ public class MinecraftMixin {
 	@Inject(method = "startGame", at = @At("HEAD"))
 	public void onStartGame(CallbackInfo ci) {
 		OrionCraft.INSTANCE.startGameEntrypoint(ClientVersion.MC_1_7_10);
+		OrionCraft.INSTANCE.setOrionCraftBridgesEntrypoint(new OneDotSevenBridgeProvider());
 	}
 
 	@ModifyArg(method = "startGame", at = @At(value = "INVOKE", target = "org/lwjgl/opengl/Display.setTitle(Ljava/lang/String;)V"), index = 0)

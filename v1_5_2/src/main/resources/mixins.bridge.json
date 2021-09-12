@@ -1,0 +1,9 @@
+{
+	"package": "io.github.orioncraftmc.orion.version.v1_5_2.mixins.bridge",
+	"compatibilityLevel": "JAVA_16",
+	"client": [
+		"minecraft.MinecraftMixin",
+		"minecraft.ScaledResolutionMixin"
+	],
+	"required": true
+}
