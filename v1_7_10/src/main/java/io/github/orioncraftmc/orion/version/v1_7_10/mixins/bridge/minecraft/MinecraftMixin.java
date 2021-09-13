@@ -25,6 +25,7 @@ public abstract class MinecraftMixin implements MinecraftBridge {
 	@NotNull
 	@Override
 	public ScaledResolutionBridge getScaledResolution() {
+		//noinspection ConstantConditions
 		return (ScaledResolutionBridge) new ScaledResolution((Minecraft) ((Object) this), displayWidth, displayHeight);
 	}
 
