@@ -15,33 +15,18 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.orioncraftmc.orion.version.v1_5_2.mixins.client;
+package io.github.orioncraftmc.orion.version.v1_5_2.mixins.client.branding;
 
-import io.github.orioncraftmc.orion.api.OrionCraft;
-import io.github.orioncraftmc.orion.api.OrionCraftConstants;
-import io.github.orioncraftmc.orion.api.meta.ClientVersion;
-import io.github.orioncraftmc.orion.version.v1_5_2.bridge.OneDotFiveBridgeProvider;
 import net.minecraft.client.Minecraft;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Constant;
-import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Minecraft.class)
 public class MinecraftMixin {
-
-	@Inject(method = "startGame", at = @At("HEAD"))
-	private void onStartGame(CallbackInfo ci) {
-		OrionCraft.INSTANCE.setOrionCraftBridgesEntrypoint(new OneDotFiveBridgeProvider());
-	}
-
-
-	@ModifyConstant(method = "main", constant = @Constant(stringValue = "Minecraft"))
-	private static String onSetFrameTitle(String original) {
-		OrionCraft.INSTANCE.startGameEntrypoint(ClientVersion.MC_1_5_2);
-		return OrionCraftConstants.INSTANCE.getClientTitle();
+	@ModifyConstant(method = "loadScreen", constant = @Constant(stringValue = "/title/mojang.png"))
+	private String onSetMojangLogo(String original) {
+		return "/assets/orion/title/modern-mojang.png";
 	}
 
 }

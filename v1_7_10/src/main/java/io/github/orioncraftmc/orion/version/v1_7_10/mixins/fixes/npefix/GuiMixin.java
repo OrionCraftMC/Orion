@@ -29,7 +29,9 @@ public class GuiMixin {
 
 	@ModifyVariable(method = {"drawString", "drawCenteredString"}, at = @At("HEAD"), index = 1, argsOnly = true)
 	public FontRenderer onDrawString(FontRenderer renderer) {
-		if (renderer == null) return Minecraft.getMinecraft().fontRendererObj;
+		if (renderer == null) {
+			return Minecraft.getMinecraft().fontRendererObj;
+		}
 		return renderer;
 	}
 

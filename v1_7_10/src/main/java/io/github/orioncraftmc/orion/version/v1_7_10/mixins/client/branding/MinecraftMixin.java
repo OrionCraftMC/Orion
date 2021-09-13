@@ -15,33 +15,27 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.orioncraftmc.orion.version.v1_5_2.mixins.client;
+package io.github.orioncraftmc.orion.version.v1_7_10.mixins.client.branding;
 
-import io.github.orioncraftmc.orion.api.OrionCraft;
-import io.github.orioncraftmc.orion.api.OrionCraftConstants;
-import io.github.orioncraftmc.orion.api.meta.ClientVersion;
-import io.github.orioncraftmc.orion.version.v1_5_2.bridge.OneDotFiveBridgeProvider;
 import net.minecraft.client.Minecraft;
+import net.minecraft.util.ResourceLocation;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Constant;
-import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(Minecraft.class)
 public class MinecraftMixin {
 
-	@Inject(method = "startGame", at = @At("HEAD"))
-	private void onStartGame(CallbackInfo ci) {
-		OrionCraft.INSTANCE.setOrionCraftBridgesEntrypoint(new OneDotFiveBridgeProvider());
+	@Redirect(method = "<clinit>", at = @At(value = "NEW", target = "net/minecraft/util/ResourceLocation"))
+	private static ResourceLocation onMojangSplashCreation(String original) {
+		return new ResourceLocation("orion", "title/modern-mojang.png");
 	}
 
-
-	@ModifyConstant(method = "main", constant = @Constant(stringValue = "Minecraft"))
-	private static String onSetFrameTitle(String original) {
-		OrionCraft.INSTANCE.startGameEntrypoint(ClientVersion.MC_1_5_2);
-		return OrionCraftConstants.INSTANCE.getClientTitle();
+	@ModifyConstant(method = "loadScreen", constant = @Constant(stringValue = "logo"))
+	private String onSetMojangLogo(String original) {
+		return "modern_logo";
 	}
 
 }
