@@ -3,7 +3,9 @@
 	"compatibilityLevel": "JAVA_16",
 	"client": [
 		"minecraft.MinecraftMixin",
-		"minecraft.ScaledResolutionMixin"
+		"minecraft.ScaledResolutionMixin",
+
+		"rendering.TessellatorMixin"
 	],
 	"required": true
 }
