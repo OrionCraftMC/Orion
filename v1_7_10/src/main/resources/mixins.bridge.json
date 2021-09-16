@@ -1,3 +1,4 @@
+
 {
 	"package": "io.github.orioncraftmc.orion.version.v1_7_10.mixins.bridge",
 	"compatibilityLevel": "JAVA_16",
@@ -5,7 +6,9 @@
 		"minecraft.MinecraftMixin",
 		"minecraft.ScaledResolutionMixin",
 
-		"rendering.TessellatorMixin"
+		"rendering.TessellatorMixin",
+
+		"minecraft.resources.ResourceLocationMixin"
 	],
 	"required": true
 }
