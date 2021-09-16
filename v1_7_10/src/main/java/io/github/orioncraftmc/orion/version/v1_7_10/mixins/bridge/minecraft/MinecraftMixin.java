@@ -29,9 +29,18 @@ public abstract class MinecraftMixin implements MinecraftBridge {
 		return (ScaledResolutionBridge) new ScaledResolution((Minecraft) ((Object) this), displayWidth, displayHeight);
 	}
 
-
 	@Override
 	public void openScreen(@NotNull OrionScreen orionScreen) {
 		displayGuiScreen(new OrionGuiScreen(orionScreen));
+	}
+
+	@Override
+	public int getGameHeight() {
+		return displayHeight;
+	}
+
+	@Override
+	public int getGameWidth() {
+		return displayWidth;
 	}
 }

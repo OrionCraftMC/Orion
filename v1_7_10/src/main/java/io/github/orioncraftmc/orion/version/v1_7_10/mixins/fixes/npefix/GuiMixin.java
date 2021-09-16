@@ -29,6 +29,7 @@ public class GuiMixin {
 
 	@ModifyVariable(method = {"drawString", "drawCenteredString"}, at = @At("HEAD"), index = 1, argsOnly = true)
 	public FontRenderer onDrawString(FontRenderer renderer) {
+		// FontRenderer can be null because Optifine and MCP is weird
 		if (renderer == null) {
 			return Minecraft.getMinecraft().fontRendererObj;
 		}

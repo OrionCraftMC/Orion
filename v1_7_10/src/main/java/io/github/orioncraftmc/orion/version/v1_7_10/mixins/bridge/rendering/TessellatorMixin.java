@@ -36,4 +36,11 @@ public abstract class TessellatorMixin {
 	public void bridge$startDrawingTriangleFan() {
 		startDrawing(GL11.GL_TRIANGLE_FAN);
 	}
+
+	public void bridge$startDrawingLineLoop() {
+		startDrawing(GL11.GL_LINE_LOOP);
+	}
+	public void bridge$startDrawingLineStrip() {
+		startDrawing(GL11.GL_LINE_STRIP);
+	}
 }

@@ -2,14 +2,16 @@ package io.github.orioncraftmc.orion.version.v1_5_2.mixins.client.branding;
 
 import io.github.orioncraftmc.orion.api.gui.screens.impl.MainMenuScreen;
 import net.minecraft.client.gui.GuiMainMenu;
-import net.minecraft.client.gui.GuiScreen;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(GuiMainMenu.class)
-public abstract class GuiMainMenuMixin extends GuiScreen {
+public abstract class GuiMainMenuMixin {
 
 	MainMenuScreen orionMainMenu = new MainMenuScreen() {
 		@Override
@@ -17,6 +19,11 @@ public abstract class GuiMainMenuMixin extends GuiScreen {
 			GuiMainMenuMixin.this.renderSkybox(i, i1, v);
 		}
 	};
+
+	@Inject(method = "initGui", at = @At("TAIL"))
+	public void onInitGui(CallbackInfo ci) {
+		orionMainMenu.onInitOrResize();
+	}
 
 	@ModifyConstant(method = "<clinit>")
 	private static String onVanillaPanoramaCreation(String original) {
@@ -30,6 +37,7 @@ public abstract class GuiMainMenuMixin extends GuiScreen {
 	public abstract void renderSkybox(int mouseX, int mouseY, float renderPartialTicks);
 
 	/**
+	 * @reason Main menu rendering is explicitly handled by API
 	 * @author OrionCraftMc
 	 */
 	@Overwrite
@@ -38,14 +46,13 @@ public abstract class GuiMainMenuMixin extends GuiScreen {
 	}
 
 	/**
+	 * @reason Main menu clicks are explicitly handled by API
 	 * @author OrionCraftMc
 	 */
 	@Overwrite
 	public void mouseClicked(int mouseX, int mouseY, int clickedButtonId) {
 		orionMainMenu.handleMouseClick(mouseX, mouseY, clickedButtonId);
 	}
-
-
 
 
 }

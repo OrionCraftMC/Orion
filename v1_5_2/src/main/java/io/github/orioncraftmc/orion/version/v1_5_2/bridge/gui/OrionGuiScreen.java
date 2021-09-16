@@ -6,6 +6,11 @@ import net.minecraft.client.gui.GuiScreen;
 public class OrionGuiScreen extends GuiScreen {
 	private final OrionScreen screen;
 
+	@Override
+	public void initGui() {
+		screen.onInitOrResize();
+	}
+
 	public OrionGuiScreen(OrionScreen screen) {
 		this.screen = screen;
 	}

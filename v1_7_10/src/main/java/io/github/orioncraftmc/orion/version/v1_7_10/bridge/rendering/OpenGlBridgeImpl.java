@@ -38,4 +38,9 @@ public class OpenGlBridgeImpl implements OpenGlBridge {
 	public void pushMatrix() {
 		GL11.glPushMatrix();
 	}
+
+	@Override
+	public void setLineWidth(float v) {
+		GL11.glLineWidth(v);
+	}
 }

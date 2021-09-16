@@ -26,7 +26,8 @@ import org.spongepowered.asm.mixin.Overwrite;
 public class ClientBrandRetrieverMixin {
 
 	/**
-	 * @author OrionCraftMC - We change the client brand
+	 * @reason We change the client brand
+	 * @author OrionCraftMC
 	 */
 	@Overwrite
 	public static String getClientModName() {

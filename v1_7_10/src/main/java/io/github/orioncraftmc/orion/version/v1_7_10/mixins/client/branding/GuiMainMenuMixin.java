@@ -8,7 +8,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(GuiMainMenu.class)
 public abstract class GuiMainMenuMixin extends GuiScreen {
@@ -19,6 +21,11 @@ public abstract class GuiMainMenuMixin extends GuiScreen {
 			GuiMainMenuMixin.this.renderSkybox(i, i1, v);
 		}
 	};
+
+	@Inject(method="initGui", at = @At("TAIL"))
+	public void onInitGui(CallbackInfo ci) {
+		orionMainMenu.onInitOrResize();
+	}
 
 	@Redirect(method = "<clinit>", at = @At(value = "NEW", target = "net/minecraft/util/ResourceLocation"))
 	private static ResourceLocation onVanillaPanoramaCreation(String resource) {
@@ -32,6 +39,7 @@ public abstract class GuiMainMenuMixin extends GuiScreen {
 	public abstract void renderSkybox(int mouseX, int mouseY, float renderPartialTicks);
 
 	/**
+	 * @reason Main menu rendering are explicitly handled by API
 	 * @author OrionCraftMc
 	 */
 	@Overwrite
@@ -40,14 +48,11 @@ public abstract class GuiMainMenuMixin extends GuiScreen {
 	}
 
 	/**
+	 * @reason Main menu clicks are explicitly handled by API
 	 * @author OrionCraftMc
 	 */
 	@Overwrite
 	public void mouseClicked(int mouseX, int mouseY, int clickedButtonId) {
 		orionMainMenu.handleMouseClick(mouseX, mouseY, clickedButtonId);
 	}
-
-
-
-
 }

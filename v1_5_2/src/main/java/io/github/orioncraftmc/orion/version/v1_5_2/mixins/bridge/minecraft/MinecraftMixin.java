@@ -37,4 +37,14 @@ public abstract class MinecraftMixin implements MinecraftBridge {
 	public void openScreen(@NotNull OrionScreen orionScreen) {
 		displayGuiScreen(new OrionGuiScreen(orionScreen));
 	}
+
+	@Override
+	public int getGameHeight() {
+		return displayHeight;
+	}
+
+	@Override
+	public int getGameWidth() {
+		return displayWidth;
+	}
 }

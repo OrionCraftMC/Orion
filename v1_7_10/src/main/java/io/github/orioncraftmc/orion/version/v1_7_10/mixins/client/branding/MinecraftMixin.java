@@ -30,6 +30,7 @@ public class MinecraftMixin {
 
 	@Redirect(method = "<clinit>", at = @At(value = "NEW", target = "net/minecraft/util/ResourceLocation"))
 	private static ResourceLocation onMojangSplashCreation(String original) {
+		// Replace old Mojang logo splash with a modern one
 		return new ResourceLocation("orion", "title/modern-mojang.png");
 	}
 

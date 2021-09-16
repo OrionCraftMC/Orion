@@ -4,7 +4,8 @@
 	"client": [
 		"scaling.MinecraftMixin",
 		"resources.ThreadDownloadResourcesMixin",
-		"resources.RunnableTitleScreenMixin"
+		"resources.RunnableTitleScreenMixin",
+		"fps.EntityRenderMixin"
 	],
 	"required": true
 }

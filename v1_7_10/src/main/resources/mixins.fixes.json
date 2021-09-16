@@ -3,7 +3,9 @@
 	"compatibilityLevel": "JAVA_16",
 	"client": [
 		"npefix.GuiMixin",
-		"npefix.GuiVideoSettingsMixin"
+		"npefix.GuiVideoSettingsMixin",
+
+		"fps.MinecraftMixin"
 	],
 	"required": true
 }

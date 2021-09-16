@@ -36,6 +36,7 @@ public class GuiVideoSettingsMixin {
 
 	@Inject(method = "<init>", at = @At(value = "TAIL"))
 	public void onInitGui(GuiScreen par1GuiScreen, GameSettings par2GameSettings, CallbackInfo ci) {
+		// FontRenderer can be null because Optifine and MCP is weird
 		if (fontRendererObj == null) {
 			fontRendererObj = Minecraft.getMinecraft().fontRendererObj;
 		}
