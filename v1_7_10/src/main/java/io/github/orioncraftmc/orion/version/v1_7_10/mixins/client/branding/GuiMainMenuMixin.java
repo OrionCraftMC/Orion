@@ -17,6 +17,16 @@ public abstract class GuiMainMenuMixin extends GuiScreen {
 
 	MainMenuScreen orionMainMenu = new MainMenuScreen() {
 		@Override
+		public void superHandleMouseClick(int i, int i1, int i2) {
+			GuiMainMenuMixin.super.mouseClicked(i, i1, i2);
+		}
+
+		@Override
+		public void superDrawScreen(int i, int i1, float v) {
+			GuiMainMenuMixin.super.drawScreen(i, i1, v);
+		}
+
+		@Override
 		public void renderSkybox(int i, int i1, float v) {
 			GuiMainMenuMixin.this.renderSkybox(i, i1, v);
 		}

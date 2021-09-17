@@ -2,6 +2,7 @@ package io.github.orioncraftmc.orion.version.v1_5_2.mixins.client.branding;
 
 import io.github.orioncraftmc.orion.api.gui.screens.impl.MainMenuScreen;
 import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.client.gui.GuiScreen;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
@@ -11,9 +12,20 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(GuiMainMenu.class)
-public abstract class GuiMainMenuMixin {
+public abstract class GuiMainMenuMixin extends GuiScreen {
 
 	MainMenuScreen orionMainMenu = new MainMenuScreen() {
+
+		@Override
+		public void superHandleMouseClick(int i, int i1, int i2) {
+			GuiMainMenuMixin.super.mouseClicked(i, i1, i2);
+		}
+
+		@Override
+		public void superDrawScreen(int i, int i1, float v) {
+			GuiMainMenuMixin.super.drawScreen(i, i1, v);
+		}
+
 		@Override
 		public void renderSkybox(int i, int i1, float v) {
 			GuiMainMenuMixin.this.renderSkybox(i, i1, v);

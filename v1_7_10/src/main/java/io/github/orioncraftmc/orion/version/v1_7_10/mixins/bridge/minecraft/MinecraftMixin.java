@@ -22,6 +22,9 @@ public abstract class MinecraftMixin implements MinecraftBridge {
 	@Shadow
 	public abstract void displayGuiScreen(GuiScreen guiScreen);
 
+	@Shadow
+	public GuiScreen currentScreen;
+
 	@NotNull
 	@Override
 	public ScaledResolutionBridge getScaledResolution() {
@@ -43,4 +46,12 @@ public abstract class MinecraftMixin implements MinecraftBridge {
 	public int getGameWidth() {
 		return displayWidth;
 	}
+
+	@Override
+	public void drawDefaultBackground() {
+		if (currentScreen != null) {
+			currentScreen.drawDefaultBackground();
+		}
+	}
+
 }

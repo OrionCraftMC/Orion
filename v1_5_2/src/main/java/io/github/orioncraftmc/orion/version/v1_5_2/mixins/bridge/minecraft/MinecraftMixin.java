@@ -33,9 +33,19 @@ public abstract class MinecraftMixin implements MinecraftBridge {
 	@Shadow
 	public abstract void displayGuiScreen(GuiScreen guiScreen);
 
+	@Shadow
+	public GuiScreen currentScreen;
+
 	@Override
 	public void openScreen(@NotNull OrionScreen orionScreen) {
 		displayGuiScreen(new OrionGuiScreen(orionScreen));
+	}
+
+	@Override
+	public void drawDefaultBackground() {
+		if (currentScreen != null) {
+			currentScreen.drawDefaultBackground();
+		}
 	}
 
 	@Override

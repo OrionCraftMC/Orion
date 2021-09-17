@@ -27,6 +27,7 @@ allprojects {
 
         dependencies {
             "implementation"("io.github.orioncraftmc.orion:api:1.0-SNAPSHOT")
+            "implementation"("io.github.orioncraftmc.orion:mods:1.0-SNAPSHOT")
         }
     }
 }
