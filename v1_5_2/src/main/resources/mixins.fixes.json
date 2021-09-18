@@ -5,7 +5,8 @@
 		"scaling.MinecraftMixin",
 		"resources.ThreadDownloadResourcesMixin",
 		"resources.RunnableTitleScreenMixin",
-		"fps.EntityRenderMixin"
+		"fps.EntityRenderMixin",
+		"npefix.ServerListMixin"
 	],
 	"required": true
 }
