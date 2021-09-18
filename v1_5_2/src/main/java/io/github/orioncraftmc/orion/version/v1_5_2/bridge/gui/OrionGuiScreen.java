@@ -8,7 +8,7 @@ public class OrionGuiScreen extends GuiScreen {
 
 	@Override
 	public void initGui() {
-		screen.onInitOrResize();
+		screen.internalOnResize();
 	}
 
 	public OrionGuiScreen(OrionScreen screen) {

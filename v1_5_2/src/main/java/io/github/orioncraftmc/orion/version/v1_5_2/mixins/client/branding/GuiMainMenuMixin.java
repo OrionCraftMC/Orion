@@ -34,7 +34,7 @@ public abstract class GuiMainMenuMixin extends GuiScreen {
 
 	@Inject(method = "initGui", at = @At("TAIL"))
 	public void onInitGui(CallbackInfo ci) {
-		orionMainMenu.onInitOrResize();
+		orionMainMenu.internalOnResize();
 	}
 
 	@ModifyConstant(method = "<clinit>")

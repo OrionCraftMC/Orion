@@ -5,7 +5,8 @@
 		"minecraft.MinecraftMixin",
 		"minecraft.ScaledResolutionMixin",
 
-		"rendering.TessellatorMixin"
+		"rendering.TessellatorMixin",
+		"rendering.FontRendererMixin"
 	],
 	"required": true
 }
