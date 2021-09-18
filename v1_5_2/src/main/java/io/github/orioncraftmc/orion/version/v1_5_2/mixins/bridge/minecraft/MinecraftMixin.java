@@ -5,6 +5,7 @@ import io.github.orioncraftmc.orion.api.bridge.minecraft.ScaledResolutionBridge;
 import io.github.orioncraftmc.orion.api.bridge.rendering.FontRendererBridge;
 import io.github.orioncraftmc.orion.api.gui.screens.OrionScreen;
 import io.github.orioncraftmc.orion.version.v1_5_2.bridge.gui.OrionGuiScreen;
+import java.io.File;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
@@ -34,6 +35,9 @@ public abstract class MinecraftMixin implements MinecraftBridge {
 	@Shadow
 	public FontRenderer fontRenderer;
 
+	@Shadow
+	public File mcDataDir;
+
 	@NotNull
 	@Override
 	public ScaledResolutionBridge getScaledResolution() {
@@ -57,6 +61,12 @@ public abstract class MinecraftMixin implements MinecraftBridge {
 		if (currentScreen != null) {
 			currentScreen.drawDefaultBackground();
 		}
+	}
+
+	@NotNull
+	@Override
+	public File getGameAppDirectory() {
+		return mcDataDir;
 	}
 
 	@Override

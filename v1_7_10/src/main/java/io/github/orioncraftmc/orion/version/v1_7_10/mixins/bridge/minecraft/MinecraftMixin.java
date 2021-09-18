@@ -5,11 +5,13 @@ import io.github.orioncraftmc.orion.api.bridge.minecraft.ScaledResolutionBridge;
 import io.github.orioncraftmc.orion.api.bridge.rendering.FontRendererBridge;
 import io.github.orioncraftmc.orion.api.gui.screens.OrionScreen;
 import io.github.orioncraftmc.orion.version.v1_7_10.bridge.gui.OrionGuiScreen;
+import java.io.File;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import org.jetbrains.annotations.NotNull;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
@@ -29,6 +31,10 @@ public abstract class MinecraftMixin implements MinecraftBridge {
 
 	@Shadow
 	public FontRenderer fontRendererObj;
+
+	@Final
+	@Shadow
+	public File mcDataDir;
 
 	@NotNull
 	@Override
@@ -56,6 +62,12 @@ public abstract class MinecraftMixin implements MinecraftBridge {
 	@Override
 	public int getGameWidth() {
 		return displayWidth;
+	}
+
+	@NotNull
+	@Override
+	public File getGameAppDirectory() {
+		return mcDataDir;
 	}
 
 	@Override
