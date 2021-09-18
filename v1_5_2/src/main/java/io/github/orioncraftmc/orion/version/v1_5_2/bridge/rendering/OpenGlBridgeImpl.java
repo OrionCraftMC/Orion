@@ -45,6 +45,11 @@ public class OpenGlBridgeImpl implements OpenGlBridge {
 	}
 
 	@Override
+	public void setColor(int i, int i1, int i2, int i3) {
+		GL11.glColor4b((byte) i, (byte) i1, (byte) i2, (byte) i3);
+	}
+
+	@Override
 	public void setLineWidth(float v) {
 		GL11.glLineWidth(v);
 	}
