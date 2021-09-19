@@ -1,0 +1,7 @@
+{
+	"package": "io.github.orioncraftmc.orion.version.v1_5_2.mixins.events",
+	"compatibilityLevel": "JAVA_16",
+	"client": [
+	],
+	"required": true
+}
