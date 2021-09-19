@@ -1,7 +1,10 @@
 package io.github.orioncraftmc.orion.version.v1_7_10.mixins.bridge.rendering;
 
+import io.github.orioncraftmc.orion.api.bridge.rendering.DrawMode;
 import io.github.orioncraftmc.orion.api.bridge.rendering.TessellatorBridge;
 import net.minecraft.client.renderer.Tessellator;
+
+import org.jetbrains.annotations.NotNull;
 import org.lwjgl.opengl.GL11;
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;
@@ -29,18 +32,7 @@ public abstract class TessellatorMixin {
 		setColorRGBA(i, i1, i2, i3);
 	}
 
-	public void bridge$startDrawingQuads() {
-		startDrawing(GL11.GL_QUADS);
-	}
-
-	public void bridge$startDrawingTriangleFan() {
-		startDrawing(GL11.GL_TRIANGLE_FAN);
-	}
-
-	public void bridge$startDrawingLineLoop() {
-		startDrawing(GL11.GL_LINE_LOOP);
-	}
-	public void bridge$startDrawingLineStrip() {
-		startDrawing(GL11.GL_LINE_STRIP);
+	public void bridge$start(@NotNull DrawMode mode) {
+		startDrawing(mode.ordinal());
 	}
 }

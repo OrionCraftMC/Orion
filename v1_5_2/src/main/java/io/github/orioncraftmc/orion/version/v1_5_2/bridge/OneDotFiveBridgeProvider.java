@@ -5,6 +5,8 @@ import io.github.orioncraftmc.orion.api.bridge.minecraft.MinecraftBridge;
 import io.github.orioncraftmc.orion.api.bridge.minecraft.resources.ResourceLocationUtils;
 import io.github.orioncraftmc.orion.api.bridge.rendering.OpenGlBridge;
 import io.github.orioncraftmc.orion.api.bridge.rendering.TessellatorBridge;
+import io.github.orioncraftmc.orion.api.logging.FallbackLogger;
+import io.github.orioncraftmc.orion.api.logging.Logger;
 import io.github.orioncraftmc.orion.version.v1_5_2.bridge.rendering.OpenGlBridgeImpl;
 import io.github.orioncraftmc.orion.version.v1_5_2.bridge.resources.ResourceLocationUtilsImpl;
 import net.minecraft.client.Minecraft;
@@ -38,5 +40,11 @@ public class OneDotFiveBridgeProvider implements OrionCraftBridgeProvider {
 	@Override
 	public ResourceLocationUtils getResourceLocationUtils() {
 		return resourceLocationUtils;
+	}
+
+	@NotNull
+	@Override
+	public Logger getLogger() {
+		return FallbackLogger.INSTANCE;
 	}
 }
