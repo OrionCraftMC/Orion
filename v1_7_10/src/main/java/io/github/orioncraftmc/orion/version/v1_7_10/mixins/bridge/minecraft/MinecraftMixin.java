@@ -17,6 +17,7 @@
 
 package io.github.orioncraftmc.orion.version.v1_7_10.mixins.bridge.minecraft;
 
+import io.github.orioncraftmc.orion.api.bridge.minecraft.GameSettingsBridge;
 import io.github.orioncraftmc.orion.api.bridge.minecraft.MinecraftBridge;
 import io.github.orioncraftmc.orion.api.bridge.minecraft.ScaledResolutionBridge;
 import io.github.orioncraftmc.orion.api.bridge.rendering.FontRendererBridge;
@@ -27,6 +28,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.settings.GameSettings;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -52,6 +54,9 @@ public abstract class MinecraftMixin implements MinecraftBridge {
 	@Final
 	@Shadow
 	public File mcDataDir;
+
+	@Shadow
+	public GameSettings gameSettings;
 
 	@NotNull
 	@Override
@@ -92,6 +97,12 @@ public abstract class MinecraftMixin implements MinecraftBridge {
 		if (currentScreen != null) {
 			currentScreen.drawDefaultBackground();
 		}
+	}
+
+	@NotNull
+	@Override
+	public GameSettingsBridge getGameSettings() {
+		return (GameSettingsBridge) gameSettings;
 	}
 
 }

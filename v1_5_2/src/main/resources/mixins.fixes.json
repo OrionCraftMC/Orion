@@ -11,7 +11,9 @@
 
 		"npefix.ServerListMixin",
 
-		"mcoremove.GuiMainMenuMixin"
+		"mcoremove.GuiMainMenuMixin",
+
+		"settings.MinecraftMixin"
 	],
 	"required": true
 }

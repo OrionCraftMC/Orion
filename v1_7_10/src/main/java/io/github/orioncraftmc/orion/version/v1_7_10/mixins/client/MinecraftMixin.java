@@ -22,6 +22,7 @@ import io.github.orioncraftmc.orion.api.OrionCraftConstants;
 import io.github.orioncraftmc.orion.api.meta.ClientVersion;
 import io.github.orioncraftmc.orion.version.v1_7_10.bridge.OneDotSevenBridgeProvider;
 import net.minecraft.client.Minecraft;
+import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -31,7 +32,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Minecraft.class)
 public class MinecraftMixin {
 
-	@Inject(method = "startGame", at = @At("HEAD"))
+	@Inject(method = "startGame", at = @At(value = "FIELD",
+			opcode = Opcodes.PUTFIELD,
+			target = "Lnet/minecraft/client/Minecraft;gameSettings:Lnet/minecraft/client/settings/GameSettings;",
+			shift = At.Shift.AFTER)
+	)
 	public void onStartGame(CallbackInfo ci) {
 		OrionCraft.INSTANCE.startGameEntrypoint(ClientVersion.MC_1_7_10);
 		OrionCraft.INSTANCE.setOrionCraftBridgesEntrypoint(new OneDotSevenBridgeProvider());

@@ -17,6 +17,7 @@
 
 package io.github.orioncraftmc.orion.version.v1_5_2.mixins.bridge.minecraft;
 
+import io.github.orioncraftmc.orion.api.bridge.minecraft.GameSettingsBridge;
 import io.github.orioncraftmc.orion.api.bridge.minecraft.MinecraftBridge;
 import io.github.orioncraftmc.orion.api.bridge.minecraft.ScaledResolutionBridge;
 import io.github.orioncraftmc.orion.api.bridge.rendering.FontRendererBridge;
@@ -94,5 +95,11 @@ public abstract class MinecraftMixin implements MinecraftBridge {
 	@Override
 	public int getGameWidth() {
 		return displayWidth;
+	}
+
+	@NotNull
+	@Override
+	public GameSettingsBridge getGameSettings() {
+		return (GameSettingsBridge) gameSettings;
 	}
 }

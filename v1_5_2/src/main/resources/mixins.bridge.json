@@ -4,6 +4,7 @@
 	"client": [
 		"minecraft.MinecraftMixin",
 		"minecraft.ScaledResolutionMixin",
+		"minecraft.GameSettingsMixin",
 
 		"rendering.TessellatorMixin",
 		"rendering.FontRendererMixin"
