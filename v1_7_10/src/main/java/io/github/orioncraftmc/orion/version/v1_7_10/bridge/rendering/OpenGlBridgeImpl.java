@@ -62,6 +62,11 @@ public class OpenGlBridgeImpl implements OpenGlBridge {
 	}
 
 	@Override
+	public void scale(double x, double y, double z) {
+		GL11.glScaled(x, y, z);
+	}
+
+	@Override
 	public void setLineWidth(float v) {
 		GL11.glLineWidth(v);
 	}
