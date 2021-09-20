@@ -5,7 +5,9 @@
 		"npefix.GuiMixin",
 		"npefix.GuiVideoSettingsMixin",
 
-		"fps.MinecraftMixin"
+		"fps.MinecraftMixin",
+
+		"mcoremove.GuiMainMenuMixin"
 	],
 	"required": true
 }

@@ -3,10 +3,15 @@
 	"compatibilityLevel": "JAVA_16",
 	"client": [
 		"scaling.MinecraftMixin",
+
 		"resources.ThreadDownloadResourcesMixin",
 		"resources.RunnableTitleScreenMixin",
+
 		"fps.EntityRenderMixin",
-		"npefix.ServerListMixin"
+
+		"npefix.ServerListMixin",
+
+		"mcoremove.GuiMainMenuMixin"
 	],
 	"required": true
 }
