@@ -66,7 +66,7 @@ public abstract class GuiMainMenuMixin extends GuiScreen {
 	public abstract void renderSkybox(int mouseX, int mouseY, float renderPartialTicks);
 
 	/**
-	 * @reason Main menu rendering are explicitly handled by API
+	 * @reason Main menu rendering is explicitly handled by API
 	 * @author OrionCraftMc
 	 */
 	@Overwrite
