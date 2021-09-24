@@ -17,6 +17,7 @@
 
 package io.github.orioncraftmc.orion.version.v1_7_10.bridge;
 
+import io.github.orioncraftmc.orion.api.OrionCraftConstants;
 import io.github.orioncraftmc.orion.api.logging.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.jetbrains.annotations.NotNull;
@@ -28,7 +29,9 @@ public enum LoggerBridge implements Logger {
 
 	@Override
 	public void debug(@NotNull String s, @NotNull Object... objects) {
-		LOGGER.debug(s, objects);
+		if (OrionCraftConstants.INSTANCE.isDevEnvironment()) {
+			LOGGER.debug(s, objects);
+		}
 	}
 
 	@Override
