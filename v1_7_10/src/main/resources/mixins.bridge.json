@@ -1,16 +1,17 @@
 
 {
-	"package": "io.github.orioncraftmc.orion.version.v1_7_10.mixins.bridge",
-	"compatibilityLevel": "JAVA_16",
-	"client": [
-		"minecraft.MinecraftMixin",
-		"minecraft.ScaledResolutionMixin",
-		"minecraft.GameSettingsMixin",
-
-		"rendering.TessellatorMixin",
-		"rendering.FontRendererMixin",
-
-		"minecraft.resources.ResourceLocationMixin"
-	],
-	"required": true
+  "package": "io.github.orioncraftmc.orion.version.v1_7_10.mixins.bridge",
+  "compatibilityLevel": "JAVA_16",
+  "client": [
+    "minecraft.GameSettingsMixin",
+    "minecraft.MinecraftMixin",
+    "minecraft.ScaledResolutionMixin",
+    "minecraft.resources.ResourceLocationMixin",
+    "rendering.FontRendererMixin",
+    "rendering.TessellatorMixin"
+  ],
+  "required": true,
+  "mixins": [
+    "minecraft.GuiIngameMixin"
+  ]
 }
