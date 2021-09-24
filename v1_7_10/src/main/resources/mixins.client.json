@@ -1,13 +1,13 @@
 {
-	"package": "io.github.orioncraftmc.orion.version.v1_7_10.mixins.client",
-	"compatibilityLevel": "JAVA_16",
-	"client": [
-		"MinecraftMixin",
-		"ClientBrandRetrieverMixin",
-		"DefaultResourcePackMixin",
-
-		"branding.MinecraftMixin",
-		"branding.GuiMainMenuMixin"
-	],
-	"required": true
+  "package": "io.github.orioncraftmc.orion.version.v1_7_10.mixins.client",
+  "compatibilityLevel": "JAVA_16",
+  "client": [
+	"ClientBrandRetrieverMixin",
+	"DefaultResourcePackMixin",
+	"MinecraftMixin",
+	"GuiIngameMixin",
+	"branding.GuiMainMenuMixin",
+	"branding.MinecraftMixin"
+  ],
+  "required": true
 }

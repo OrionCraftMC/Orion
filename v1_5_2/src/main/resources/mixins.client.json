@@ -2,13 +2,11 @@
   "package": "io.github.orioncraftmc.orion.version.v1_5_2.mixins.client",
   "compatibilityLevel": "JAVA_16",
   "client": [
-    "ClientBrandRetrieverMixin",
-    "MinecraftMixin",
-    "branding.GuiMainMenuMixin",
-    "branding.MinecraftMixin"
+	"ClientBrandRetrieverMixin",
+	"GuiIngameMixin",
+	"MinecraftMixin",
+	"branding.GuiMainMenuMixin",
+	"branding.MinecraftMixin"
   ],
-  "required": true,
-  "mixins": [
-    "GuiIngameMixin"
-  ]
+  "required": true
 }

@@ -1,19 +1,14 @@
 {
-	"package": "io.github.orioncraftmc.orion.version.v1_5_2.mixins.fixes",
-	"compatibilityLevel": "JAVA_16",
-	"client": [
-		"scaling.MinecraftMixin",
-
-		"resources.ThreadDownloadResourcesMixin",
-		"resources.RunnableTitleScreenMixin",
-
-		"fps.EntityRenderMixin",
-
-		"npefix.ServerListMixin",
-
-		"mcoremove.GuiMainMenuMixin",
-
-		"settings.MinecraftMixin"
-	],
-	"required": true
+  "package": "io.github.orioncraftmc.orion.version.v1_5_2.mixins.fixes",
+  "compatibilityLevel": "JAVA_16",
+  "client": [
+	"fps.EntityRenderMixin",
+	"mcoremove.GuiMainMenuMixin",
+	"npefix.ServerListMixin",
+	"resources.RunnableTitleScreenMixin",
+	"resources.ThreadDownloadResourcesMixin",
+	"scaling.MinecraftMixin",
+	"settings.MinecraftMixin"
+  ],
+  "required": true
 }

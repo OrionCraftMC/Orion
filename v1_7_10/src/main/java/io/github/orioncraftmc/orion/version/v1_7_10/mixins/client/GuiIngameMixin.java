@@ -1,4 +1,4 @@
-package io.github.orioncraftmc.orion.version.v1_7_10.mixins.bridge.minecraft;
+package io.github.orioncraftmc.orion.version.v1_7_10.mixins.client;
 
 import io.github.orioncraftmc.orion.api.event.EventBus;
 import io.github.orioncraftmc.orion.api.event.impl.HudRenderEvent;

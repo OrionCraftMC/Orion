@@ -1,13 +1,11 @@
 {
-	"package": "io.github.orioncraftmc.orion.version.v1_7_10.mixins.fixes",
-	"compatibilityLevel": "JAVA_16",
-	"client": [
-		"npefix.GuiMixin",
-		"npefix.GuiVideoSettingsMixin",
-
-		"fps.MinecraftMixin",
-
-		"mcoremove.GuiMainMenuMixin"
-	],
-	"required": true
+  "package": "io.github.orioncraftmc.orion.version.v1_7_10.mixins.fixes",
+  "compatibilityLevel": "JAVA_16",
+  "client": [
+	"fps.MinecraftMixin",
+	"mcoremove.GuiMainMenuMixin",
+	"npefix.GuiMixin",
+	"npefix.GuiVideoSettingsMixin"
+  ],
+  "required": true
 }

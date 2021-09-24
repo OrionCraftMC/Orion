@@ -1,10 +1,9 @@
 {
-	"package": "io.github.orioncraftmc.orion.version.v1_5_2.mixins.events",
-	"compatibilityLevel": "JAVA_16",
-	"client": [
-		"settings.GameSettingsMixin",
-
-		"input.MinecraftMixin"
-	],
-	"required": true
+  "package": "io.github.orioncraftmc.orion.version.v1_5_2.mixins.events",
+  "compatibilityLevel": "JAVA_16",
+  "client": [
+	"input.MinecraftMixin",
+	"settings.GameSettingsMixin"
+  ],
+  "required": true
 }
