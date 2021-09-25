@@ -20,11 +20,13 @@ package io.github.orioncraftmc.orion.version.v1_7_10.mixins.bridge.minecraft;
 import io.github.orioncraftmc.orion.api.bridge.minecraft.GameSettingsBridge;
 import io.github.orioncraftmc.orion.api.bridge.minecraft.MinecraftBridge;
 import io.github.orioncraftmc.orion.api.bridge.minecraft.ScaledResolutionBridge;
+import io.github.orioncraftmc.orion.api.bridge.minecraft.entity.EntityPlayerBridge;
 import io.github.orioncraftmc.orion.api.bridge.rendering.FontRendererBridge;
 import io.github.orioncraftmc.orion.api.gui.screens.OrionScreen;
 import io.github.orioncraftmc.orion.version.v1_7_10.bridge.gui.OrionGuiScreen;
 import java.io.File;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
@@ -57,6 +59,9 @@ public abstract class MinecraftMixin implements MinecraftBridge {
 
 	@Shadow
 	public GameSettings gameSettings;
+
+	@Shadow
+	public EntityClientPlayerMP thePlayer;
 
 	@NotNull
 	@Override
@@ -105,4 +110,9 @@ public abstract class MinecraftMixin implements MinecraftBridge {
 		return (GameSettingsBridge) gameSettings;
 	}
 
+	@NotNull
+	@Override
+	public EntityPlayerBridge getPlayer() {
+		return (EntityPlayerBridge) this.thePlayer;
+	}
 }
