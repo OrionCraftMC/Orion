@@ -22,6 +22,7 @@ import io.github.orioncraftmc.orion.api.bridge.minecraft.MinecraftBridge;
 import io.github.orioncraftmc.orion.api.bridge.minecraft.ScaledResolutionBridge;
 import io.github.orioncraftmc.orion.api.bridge.minecraft.entity.EntityPlayerBridge;
 import io.github.orioncraftmc.orion.api.bridge.rendering.FontRendererBridge;
+import io.github.orioncraftmc.orion.api.bridge.rendering.item.RenderItemBridge;
 import io.github.orioncraftmc.orion.api.gui.screens.OrionScreen;
 import io.github.orioncraftmc.orion.version.v1_7_10.bridge.gui.OrionGuiScreen;
 import java.io.File;
@@ -30,11 +31,13 @@ import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.settings.GameSettings;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(Minecraft.class)
 public abstract class MinecraftMixin implements MinecraftBridge {
@@ -52,6 +55,9 @@ public abstract class MinecraftMixin implements MinecraftBridge {
 
 	@Shadow
 	public FontRenderer fontRendererObj;
+
+	@Unique
+	private final RenderItem defaultRenderItem = new RenderItem();
 
 	@Final
 	@Shadow
@@ -114,5 +120,11 @@ public abstract class MinecraftMixin implements MinecraftBridge {
 	@Override
 	public EntityPlayerBridge getPlayer() {
 		return (EntityPlayerBridge) this.thePlayer;
+	}
+
+	@NotNull
+	@Override
+	public RenderItemBridge getDefaultRenderItem() {
+		return (RenderItemBridge) this.defaultRenderItem;
 	}
 }
