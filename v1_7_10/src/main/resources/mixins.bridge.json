@@ -11,8 +11,10 @@
     "minecraft.item.inventory.InventoryPlayerMixin",
     "minecraft.resources.ResourceLocationMixin",
     "rendering.FontRendererMixin",
+    "rendering.GuiMixin",
     "rendering.TessellatorMixin",
-	"rendering.GuiMixin"
+	"rendering.GuiIngameMixin"
   ],
   "required": true
+  ]
 }
