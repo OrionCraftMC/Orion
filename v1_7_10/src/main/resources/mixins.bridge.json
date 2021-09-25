@@ -6,12 +6,13 @@
     "minecraft.MinecraftMixin",
     "minecraft.ScaledResolutionMixin",
     "minecraft.entity.EntityMixin",
-	"minecraft.entity.PlayerEntityMixin",
+    "minecraft.entity.PlayerEntityMixin",
     "minecraft.item.ItemStackMixin",
     "minecraft.item.inventory.InventoryPlayerMixin",
     "minecraft.resources.ResourceLocationMixin",
     "rendering.FontRendererMixin",
-    "rendering.TessellatorMixin"
+    "rendering.TessellatorMixin",
+	"rendering.GuiMixin"
   ],
   "required": true
 }
