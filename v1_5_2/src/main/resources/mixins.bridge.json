@@ -5,7 +5,9 @@
     "minecraft.GameSettingsMixin",
     "minecraft.MinecraftMixin",
     "minecraft.ScaledResolutionMixin",
-	"minecraft.entity.EntityMixin",
+    "minecraft.entity.EntityMixin",
+    "minecraft.item.ItemStackMixin",
+	"minecraft.item.inventory.InventoryPlayerMixin"
     "rendering.FontRendererMixin",
     "rendering.TessellatorMixin"
   ],
