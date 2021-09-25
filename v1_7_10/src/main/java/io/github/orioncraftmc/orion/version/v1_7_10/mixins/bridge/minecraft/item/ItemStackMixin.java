@@ -35,6 +35,9 @@ public class ItemStackMixin implements ItemStackBridge {
 	@Shadow
 	public int metadata;
 
+	@Shadow
+	public int animationsToGo;
+
 	@Override
 	public int getItemId() {
 		return Item.getIdFromItem(this.theItem);
@@ -48,5 +51,10 @@ public class ItemStackMixin implements ItemStackBridge {
 	@Override
 	public int getStackSize() {
 		return this.stackSize;
+	}
+
+	@Override
+	public int getAnimationsToGo() {
+		return this.animationsToGo;
 	}
 }
