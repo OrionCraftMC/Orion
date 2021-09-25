@@ -10,9 +10,10 @@
 	"minecraft.item.ItemStackMixin",
 	"minecraft.item.inventory.InventoryPlayerMixin",
 	"rendering.FontRendererMixin",
+	"rendering.GuiIngameMixin",
 	"rendering.GuiMixin",
 	"rendering.TessellatorMixin",
-	"rendering.GuiIngameMixin"
+	"rendering.RenderItemMixin"
   ],
   "required": true
 }
