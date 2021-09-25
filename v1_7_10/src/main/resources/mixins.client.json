@@ -5,7 +5,6 @@
 	"ClientBrandRetrieverMixin",
 	"DefaultResourcePackMixin",
 	"MinecraftMixin",
-	"GuiIngameMixin",
 	"branding.GuiMainMenuMixin",
 	"branding.MinecraftMixin"
   ],

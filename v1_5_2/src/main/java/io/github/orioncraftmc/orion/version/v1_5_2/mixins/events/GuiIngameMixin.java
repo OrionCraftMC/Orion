@@ -15,7 +15,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.orioncraftmc.orion.version.v1_7_10.mixins.client;
+package io.github.orioncraftmc.orion.version.v1_5_2.mixins.events;
 
 import io.github.orioncraftmc.orion.api.event.EventBus;
 import io.github.orioncraftmc.orion.api.event.impl.HudRenderEvent;
@@ -29,7 +29,7 @@ import net.minecraft.client.gui.GuiIngame;
 
 @Mixin(GuiIngame.class)
 public class GuiIngameMixin {
-	@Inject(method = "renderGameOverlay", at = @At(value = "INVOKE", shift = Shift.AFTER, target = "Lnet/minecraft/scoreboard/Scoreboard;getObjectiveInDisplaySlot(I)Lnet/minecraft/scoreboard/ScoreObjective;", ordinal = 1))
+	@Inject(method = "renderGameOverlay", at = @At(value = "INVOKE", shift = Shift.AFTER, target = "Lnet/minecraft/scoreboard/Scoreboard;func_96539_a(I)Lnet/minecraft/scoreboard/ScoreObjective;", ordinal = 1))
 	public void onRender(float f, boolean bl, int i, int j, CallbackInfo ci) {
 		EventBus.INSTANCE.callEvent(new HudRenderEvent(f));
 	}

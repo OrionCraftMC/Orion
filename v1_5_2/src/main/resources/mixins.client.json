@@ -3,7 +3,6 @@
   "compatibilityLevel": "JAVA_16",
   "client": [
 	"ClientBrandRetrieverMixin",
-	"GuiIngameMixin",
 	"MinecraftMixin",
 	"branding.GuiMainMenuMixin",
 	"branding.MinecraftMixin"
