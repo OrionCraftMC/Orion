@@ -75,4 +75,14 @@ public class OpenGlBridgeImpl implements OpenGlBridge {
 	public void setLineWidth(float v) {
 		GL11.glLineWidth(v);
 	}
+
+	@Override
+	public void disableRescaleNormal() {
+		GL11.glEnable(0x803A);
+	}
+
+	@Override
+	public void enableRescaleNormal() {
+		GL11.glEnable(0x803A);
+	}
 }
