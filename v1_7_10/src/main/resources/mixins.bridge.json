@@ -2,15 +2,16 @@
   "package": "io.github.orioncraftmc.orion.version.v1_7_10.mixins.bridge",
   "compatibilityLevel": "JAVA_16",
   "client": [
-	"minecraft.GameSettingsMixin",
-	"minecraft.MinecraftMixin",
-	"minecraft.ScaledResolutionMixin",
-	"minecraft.entity.EntityMixin",
-	"minecraft.item.ItemStackMixin",
-	"minecraft.item.inventory.InventoryPlayerMixin",
-	"minecraft.resources.ResourceLocationMixin",
-	"rendering.FontRendererMixin",
-	"rendering.TessellatorMixin"
+    "minecraft.GameSettingsMixin",
+    "minecraft.MinecraftMixin",
+    "minecraft.ScaledResolutionMixin",
+    "minecraft.entity.EntityMixin",
+	"minecraft.entity.PlayerEntityMixin",
+    "minecraft.item.ItemStackMixin",
+    "minecraft.item.inventory.InventoryPlayerMixin",
+    "minecraft.resources.ResourceLocationMixin",
+    "rendering.FontRendererMixin",
+    "rendering.TessellatorMixin"
   ],
   "required": true
 }

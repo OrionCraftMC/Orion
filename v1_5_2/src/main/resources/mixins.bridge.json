@@ -7,7 +7,8 @@
     "minecraft.ScaledResolutionMixin",
     "minecraft.entity.EntityMixin",
     "minecraft.item.ItemStackMixin",
-	"minecraft.item.inventory.InventoryPlayerMixin"
+    "minecraft.item.inventory.InventoryPlayerMixin",
+	"minecraft.entity.PlayerEntityMixin",
     "rendering.FontRendererMixin",
     "rendering.TessellatorMixin"
   ],
