@@ -15,13 +15,26 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.orioncraftmc.orion.version.v1_5_2.mixins.bridge.rendering;
+package io.github.orioncraftmc.orion.version.v1_5_2.mixins.bridge.minecraft.gui;
 
-import io.github.orioncraftmc.orion.api.bridge.rendering.gui.GuiIngameBridge;
+import io.github.orioncraftmc.orion.api.bridge.rendering.gui.GuiBridge;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 
-import net.minecraft.client.gui.GuiIngame;
+import net.minecraft.client.gui.Gui;
 
-@Mixin(GuiIngame.class)
-public abstract class GuiIngameMixin implements GuiIngameBridge {
+@Mixin(Gui.class)
+public class GuiMixin implements GuiBridge {
+	@Shadow
+	public float zLevel;
+
+	@Override
+	public float getZLevel() {
+		return this.zLevel;
+	}
+
+	@Override
+	public void setZLevel(float v) {
+		this.zLevel = v;
+	}
 }

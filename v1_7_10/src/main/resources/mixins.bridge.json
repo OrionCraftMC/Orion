@@ -5,16 +5,22 @@
     "minecraft.GameSettingsMixin",
     "minecraft.MinecraftMixin",
     "minecraft.ScaledResolutionMixin",
+
     "minecraft.entity.EntityMixin",
     "minecraft.entity.PlayerEntityMixin",
+
     "minecraft.item.ItemStackMixin",
     "minecraft.item.inventory.InventoryPlayerMixin",
+
     "minecraft.resources.ResourceLocationMixin",
-    "rendering.FontRendererMixin",
-    "rendering.GuiIngameMixin",
-    "rendering.GuiMixin",
-    "rendering.TessellatorMixin",
-	"rendering.RenderItemMixin"
+
+	"minecraft.gui.GuiIngameMixin",
+	"minecraft.gui.GuiMixin",
+	"minecraft.gui.GuiScreenMixin",
+
+	"rendering.TessellatorMixin",
+	"rendering.RenderItemMixin",
+	"rendering.FontRendererMixin"
   ],
   "required": true
 }

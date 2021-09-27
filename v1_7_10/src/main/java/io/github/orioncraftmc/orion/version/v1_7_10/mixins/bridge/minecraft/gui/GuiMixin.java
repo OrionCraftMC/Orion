@@ -15,33 +15,26 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.orioncraftmc.orion.version.v1_5_2.mixins.bridge.minecraft;
+package io.github.orioncraftmc.orion.version.v1_7_10.mixins.bridge.minecraft.gui;
 
-import io.github.orioncraftmc.orion.api.bridge.minecraft.GameSettingsBridge;
-import net.minecraft.client.settings.GameSettings;
+import io.github.orioncraftmc.orion.api.bridge.rendering.gui.GuiBridge;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
-@Mixin(GameSettings.class)
-public class GameSettingsMixin implements GameSettingsBridge {
-	@Shadow
-	public float gammaSetting;
+import net.minecraft.client.gui.Gui;
 
+@Mixin(Gui.class)
+public class GuiMixin implements GuiBridge {
 	@Shadow
-	public int guiScale;
+	public float zLevel;
 
 	@Override
-	public float getGammaValue() {
-		return gammaSetting;
+	public float getZLevel() {
+		return this.zLevel;
 	}
 
 	@Override
-	public void setGammaValue(float v) {
-		gammaSetting = v;
-	}
-
-	@Override
-	public int getGuiScale() {
-		return guiScale;
+	public void setZLevel(float v) {
+		this.zLevel = v;
 	}
 }

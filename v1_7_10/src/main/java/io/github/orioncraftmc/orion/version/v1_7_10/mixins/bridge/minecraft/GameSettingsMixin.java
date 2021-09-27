@@ -27,6 +27,9 @@ public class GameSettingsMixin implements GameSettingsBridge {
 	@Shadow
 	public float gammaSetting;
 
+	@Shadow
+	public int guiScale;
+
 	@Override
 	public float getGammaValue() {
 		return gammaSetting;
@@ -35,5 +38,10 @@ public class GameSettingsMixin implements GameSettingsBridge {
 	@Override
 	public void setGammaValue(float v) {
 		gammaSetting = v;
+	}
+
+	@Override
+	public int getGuiScale() {
+		return guiScale;
 	}
 }

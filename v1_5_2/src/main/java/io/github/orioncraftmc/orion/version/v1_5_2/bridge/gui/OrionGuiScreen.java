@@ -46,6 +46,12 @@ public class OrionGuiScreen extends GuiScreen {
 	public void mouseMovedOrUp(int i, int j, int k) {
 		if (k == 0) {
 			screen.handleMouseRelease(i, j);
+		} else {
+			screen.handleMouseMove(i, j, k);
 		}
+	}
+
+	public OrionScreen getScreen() {
+		return screen;
 	}
 }

@@ -15,13 +15,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.orioncraftmc.orion.version.v1_7_10.mixins.bridge.rendering;
+package io.github.orioncraftmc.orion.version.v1_5_2.mixins.bridge.minecraft.gui;
 
-import io.github.orioncraftmc.orion.api.bridge.rendering.gui.GuiIngameBridge;
+import io.github.orioncraftmc.orion.api.bridge.rendering.gui.GuiScreenBridge;
+import net.minecraft.client.gui.GuiScreen;
 import org.spongepowered.asm.mixin.Mixin;
 
-import net.minecraft.client.gui.GuiIngame;
-
-@Mixin(GuiIngame.class)
-public abstract class GuiIngameMixin implements GuiIngameBridge {
+@Mixin(GuiScreen.class)
+public abstract class GuiScreenMixin implements GuiScreenBridge {
 }

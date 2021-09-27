@@ -22,11 +22,11 @@ import io.github.orioncraftmc.orion.api.bridge.minecraft.MinecraftBridge;
 import io.github.orioncraftmc.orion.api.bridge.minecraft.ScaledResolutionBridge;
 import io.github.orioncraftmc.orion.api.bridge.minecraft.entity.EntityPlayerBridge;
 import io.github.orioncraftmc.orion.api.bridge.rendering.FontRendererBridge;
+import io.github.orioncraftmc.orion.api.bridge.rendering.gui.GuiScreenBridge;
 import io.github.orioncraftmc.orion.api.bridge.rendering.item.RenderItemBridge;
 import io.github.orioncraftmc.orion.api.gui.screens.OrionScreen;
 import io.github.orioncraftmc.orion.version.v1_5_2.bridge.gui.OrionGuiScreen;
 import java.io.File;
-
 import net.minecraft.EntityClientPlayerMP;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -35,6 +35,7 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.render.RenderItem;
 import net.minecraft.client.settings.GameSettings;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -125,5 +126,14 @@ public abstract class MinecraftMixin implements MinecraftBridge {
 	@Override
 	public RenderItemBridge getDefaultRenderItem() {
 		return (RenderItemBridge) this.defaultRenderItem;
+	}
+
+	@Nullable
+	@Override
+	public GuiScreenBridge getCurrentOpenedScreen() {
+		if (currentScreen instanceof OrionGuiScreen orionGuiScreen) {
+			return orionGuiScreen.getScreen();
+		}
+		return (GuiScreenBridge) currentScreen;
 	}
 }

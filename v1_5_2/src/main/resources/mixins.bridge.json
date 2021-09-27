@@ -5,15 +5,20 @@
 	"minecraft.GameSettingsMixin",
 	"minecraft.MinecraftMixin",
 	"minecraft.ScaledResolutionMixin",
+
 	"minecraft.entity.EntityMixin",
 	"minecraft.entity.PlayerEntityMixin",
+
 	"minecraft.item.ItemStackMixin",
 	"minecraft.item.inventory.InventoryPlayerMixin",
-	"rendering.FontRendererMixin",
-	"rendering.GuiIngameMixin",
-	"rendering.GuiMixin",
+
+	"minecraft.gui.GuiIngameMixin",
+	"minecraft.gui.GuiMixin",
+	"minecraft.gui.GuiScreenMixin",
+
 	"rendering.TessellatorMixin",
-	"rendering.RenderItemMixin"
+	"rendering.RenderItemMixin",
+	"rendering.FontRendererMixin"
   ],
   "required": true
 }
