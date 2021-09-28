@@ -5,8 +5,10 @@
 	"ClientBrandRetrieverMixin",
 	"DefaultResourcePackMixin",
 	"MinecraftMixin",
+
 	"branding.GuiMainMenuMixin",
-	"branding.MinecraftMixin"
+	"branding.MinecraftMixin",
+	"branding.GuiScreenMixin"
   ],
   "required": true
 }
