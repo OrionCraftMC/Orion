@@ -54,4 +54,9 @@ public class OrionGuiScreen extends GuiScreen {
 	public OrionScreen getScreen() {
 		return screen;
 	}
+
+	@Override
+	public void onGuiClosed() {
+		screen.onClose();
+	}
 }
