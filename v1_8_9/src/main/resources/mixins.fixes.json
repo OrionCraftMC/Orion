@@ -1,0 +1,10 @@
+{
+  "package": "io.github.orioncraftmc.orion.version.v1_8_9.mixins.fixes",
+  "compatibilityLevel": "JAVA_16",
+  "client": [
+	"fps.MinecraftMixin",
+	"mcoremove.GuiMainMenuMixin",
+	"npefix.GuiMixin"
+  ],
+  "required": true
+}
