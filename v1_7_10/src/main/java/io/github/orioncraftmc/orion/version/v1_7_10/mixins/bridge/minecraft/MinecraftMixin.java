@@ -20,10 +20,8 @@ package io.github.orioncraftmc.orion.version.v1_7_10.mixins.bridge.minecraft;
 import io.github.orioncraftmc.orion.api.bridge.minecraft.GameSettingsBridge;
 import io.github.orioncraftmc.orion.api.bridge.minecraft.MinecraftBridge;
 import io.github.orioncraftmc.orion.api.bridge.minecraft.ScaledResolutionBridge;
-import io.github.orioncraftmc.orion.api.bridge.minecraft.entity.EntityPlayerBridge;
 import io.github.orioncraftmc.orion.api.bridge.rendering.FontRendererBridge;
 import io.github.orioncraftmc.orion.api.bridge.rendering.gui.GuiScreenBridge;
-import io.github.orioncraftmc.orion.api.bridge.rendering.item.RenderItemBridge;
 import io.github.orioncraftmc.orion.api.gui.screens.OrionScreen;
 import io.github.orioncraftmc.orion.version.v1_7_10.bridge.gui.OrionGuiScreen;
 import java.io.File;
@@ -57,9 +55,6 @@ public abstract class MinecraftMixin implements MinecraftBridge {
 
 	@Shadow
 	public FontRenderer fontRendererObj;
-
-	@Unique
-	private final RenderItem defaultRenderItem = new RenderItem();
 
 	@Final
 	@Shadow
@@ -116,18 +111,6 @@ public abstract class MinecraftMixin implements MinecraftBridge {
 	@Override
 	public GameSettingsBridge getGameSettings() {
 		return (GameSettingsBridge) gameSettings;
-	}
-
-	@NotNull
-	@Override
-	public EntityPlayerBridge getPlayer() {
-		return (EntityPlayerBridge) this.thePlayer;
-	}
-
-	@NotNull
-	@Override
-	public RenderItemBridge getDefaultRenderItem() {
-		return (RenderItemBridge) this.defaultRenderItem;
 	}
 
 	@Nullable

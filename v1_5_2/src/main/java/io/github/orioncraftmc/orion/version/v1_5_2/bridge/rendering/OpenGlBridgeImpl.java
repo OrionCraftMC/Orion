@@ -20,8 +20,6 @@ package io.github.orioncraftmc.orion.version.v1_5_2.bridge.rendering;
 import io.github.orioncraftmc.orion.api.bridge.rendering.OpenGlBridge;
 import org.lwjgl.opengl.GL11;
 
-import net.minecraft.client.render.RenderHelper;
-
 public class OpenGlBridgeImpl implements OpenGlBridge {
 	@Override
 	public void disableBlend() {
@@ -76,30 +74,5 @@ public class OpenGlBridgeImpl implements OpenGlBridge {
 	@Override
 	public void setLineWidth(float v) {
 		GL11.glLineWidth(v);
-	}
-
-	@Override
-	public void disableRescaleNormal() {
-		GL11.glDisable(0x803A);
-	}
-
-	@Override
-	public void enableRescaleNormal() {
-		GL11.glEnable(0x803A);
-	}
-
-	@Override
-	public void disableStandardItemLighting() {
-		RenderHelper.disableStandardItemLighting();
-	}
-
-	@Override
-	public void enableGUIStandardItemLighting() {
-		RenderHelper.enableGUIStandardItemLighting();
-	}
-
-	@Override
-	public void enableStandardItemLighting() {
-		RenderHelper.disableStandardItemLighting();
 	}
 }
