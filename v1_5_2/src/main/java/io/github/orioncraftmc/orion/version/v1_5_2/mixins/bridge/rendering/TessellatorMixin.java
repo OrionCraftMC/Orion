@@ -20,6 +20,7 @@ package io.github.orioncraftmc.orion.version.v1_5_2.mixins.bridge.rendering;
 import io.github.orioncraftmc.orion.api.bridge.rendering.DrawMode;
 import io.github.orioncraftmc.orion.api.bridge.rendering.TessellatorBridge;
 import org.jetbrains.annotations.NotNull;
+import org.lwjgl.opengl.GL11;
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;
 import org.spongepowered.asm.mixin.Mixin;
@@ -45,7 +46,7 @@ public abstract class TessellatorMixin {
 	}
 
 	public void bridge$setColor(int i, int i1, int i2, int i3) {
-		setColorRGBA(i, i1, i2, i3);
+		GL11.glColor4f(i / 255f, i1 / 255f, i2 / 255f, i3 / 255f);
 	}
 
 	public void bridge$start(@NotNull DrawMode mode) {
