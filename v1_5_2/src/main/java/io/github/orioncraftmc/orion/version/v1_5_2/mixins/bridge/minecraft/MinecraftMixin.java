@@ -117,4 +117,9 @@ public abstract class MinecraftMixin implements MinecraftBridge {
 		}
 		return (GuiScreenBridge) currentScreen;
 	}
+
+	@Override
+	public int getCurrentFps() {
+		return Minecraft.debugFPS;
+	}
 }

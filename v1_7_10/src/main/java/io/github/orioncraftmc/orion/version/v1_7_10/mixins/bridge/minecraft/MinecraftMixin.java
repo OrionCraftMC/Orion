@@ -30,14 +30,12 @@ import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.settings.GameSettings;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(Minecraft.class)
 public abstract class MinecraftMixin implements MinecraftBridge {
@@ -120,5 +118,10 @@ public abstract class MinecraftMixin implements MinecraftBridge {
 			return orionGuiScreen.getScreen();
 		}
 		return (GuiScreenBridge) currentScreen;
+	}
+
+	@Override
+	public int getCurrentFps() {
+		return Minecraft.debugFPS;
 	}
 }
