@@ -18,7 +18,9 @@
 package io.github.orioncraftmc.orion.version.v1_5_2.mixins.backport.skins.render;
 
 import io.github.orioncraftmc.orion.version.v1_5_2.backport.skins.OrionModelPlayer;
+import io.github.orioncraftmc.orion.version.v1_5_2.backport.skins.ducks.EntityPlayerGameProfileDuck;
 import io.github.orioncraftmc.orion.version.v1_5_2.backport.skins.ducks.RenderPlayerDuck;
+import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.render.RenderPlayer;
@@ -35,6 +37,7 @@ public class RenderPlayerMixin implements RenderPlayerDuck {
 	public ModelBiped modelBipedMain;
 
 	private final OrionModelPlayer slimArmsModel = new OrionModelPlayer(0.0f, true);
+	private final ModelBiped oldSkinModel = new ModelBiped();
 
 	@Redirect(method = "<init>", at = @At(value = "NEW", target = "net/minecraft/client/model/ModelBiped"))
 	private static ModelBiped onCreatePlayerModel(float v) {
@@ -46,26 +49,35 @@ public class RenderPlayerMixin implements RenderPlayerDuck {
 		return new ModelBiped(v);
 	}
 
-	@Redirect(method = {"renderPlayer", "renderSpecials"}, at = @At(value = "FIELD", target = "Lnet/minecraft/client/render/RenderPlayer;modelBipedMain:Lnet/minecraft/client/model/ModelBiped;"))
+	@Redirect(method = {"renderPlayer", "renderSpecials", "renderFirstPersonArm"}, at = @At(value = "FIELD", target = "Lnet/minecraft/client/render/RenderPlayer;modelBipedMain:Lnet/minecraft/client/model/ModelBiped;"))
 	public ModelBiped onGetModelBiped(RenderPlayer instance, EntityPlayer player) {
+		return getPlayerModelToRender(player);
+	}
+
+	@Redirect(method = {"setArmorModel"}, at = @At(value = "FIELD", target = "Lnet/minecraft/client/render/RenderPlayer;mainModel:Lnet/minecraft/client/model/ModelBase;"))
+	public ModelBase onGetMainModel(RenderPlayer instance, EntityPlayer player) {
 		return getPlayerModelToRender(player);
 	}
 
 	@Redirect(method = "renderFirstPersonArm", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/model/ModelRenderer;render(F)V"))
 	public void onRenderFirstPersonArm(ModelRenderer instance, float v, EntityPlayer entityPlayer) {
-		getPlayerModelToRender(entityPlayer).renderRightArm();
+		ModelBiped model = getPlayerModelToRender(entityPlayer);
+		if (model instanceof OrionModelPlayer modelPlayer) {
+			modelPlayer.renderRightArm();
+		} else {
+			instance.render(v);
+		}
 	}
 
 	@Override
-	public OrionModelPlayer getPlayerModelToRender(EntityPlayer entityPlayer) {
-		return slimArmsModel;
-        /*
-        if (entityPlayer instanceof EntityPlayerGameProfileDuck duck && duck.isSlimSkin()) {
-            System.out.println("Returning slim player");
-            return slimArmsModel;
-        }
-        System.out.println("Returning normal player");
-        return (OrionModelPlayer) modelBipedMain;
-         */
+	public ModelBiped getPlayerModelToRender(EntityPlayer entityPlayer) {
+		if (entityPlayer instanceof EntityPlayerGameProfileDuck duck) {
+			if (duck.isSlimSkin()) {
+				return slimArmsModel;
+			} else if (duck.isOldSkinModel()) {
+				return oldSkinModel;
+			}
+		}
+		return modelBipedMain;
 	}
 }

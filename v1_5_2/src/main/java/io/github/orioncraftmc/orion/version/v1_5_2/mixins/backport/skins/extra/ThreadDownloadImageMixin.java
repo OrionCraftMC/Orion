@@ -20,6 +20,7 @@ package io.github.orioncraftmc.orion.version.v1_5_2.mixins.backport.skins.extra;
 import io.github.orioncraftmc.orion.backport.hooks.PlayerTexturesHook;
 import io.github.orioncraftmc.orion.version.v1_5_2.backport.skins.ducks.EntityPlayerGameProfileDuck;
 import io.github.orioncraftmc.orion.version.v1_5_2.backport.skins.ducks.ImageBufferDownloadDuck;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import net.minecraft.ThreadDownloadImage;
 import net.minecraft.client.renderer.IImageBuffer;
@@ -54,15 +55,16 @@ public class ThreadDownloadImageMixin {
 				location,
 				ci::cancel,
 				bufferedImage -> imageData.image = bufferedImage,
-				getSlimSkinHandler()
+				getPlayerSkinHandler(EntityPlayerGameProfileDuck::setIsSlimSkin),
+				getPlayerSkinHandler(EntityPlayerGameProfileDuck::setIsOldSkinModel)
 		);
 	}
 
 	@Nullable
-	private Consumer<Boolean> getSlimSkinHandler() {
+	private Consumer<Boolean> getPlayerSkinHandler(BiConsumer<EntityPlayerGameProfileDuck, Boolean> consumer) {
 		if (buffer instanceof ImageBufferDownloadDuck) {
 			EntityPlayer player = ((ImageBufferDownloadDuck) buffer).getPlayer();
-			if (player != null) return isSlim -> ((EntityPlayerGameProfileDuck) player).setIsSlimSkin(isSlim);
+			if (player != null) return value -> consumer.accept((EntityPlayerGameProfileDuck) player, value);
 		}
 		return null;
 	}

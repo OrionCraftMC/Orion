@@ -31,6 +31,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class EntityPlayerMixin implements EntityPlayerGameProfileDuck {
 
 	private boolean isSlimSkin;
+	private boolean isOldSkinModel;
 
 	@Inject(method = "<init>", at = @At("RETURN"))
 	public void setNewSteveTexture(World par1, CallbackInfo ci) {
@@ -46,5 +47,15 @@ public class EntityPlayerMixin implements EntityPlayerGameProfileDuck {
 	@Override
 	public void setIsSlimSkin(boolean slimSkin) {
 		isSlimSkin = slimSkin;
+	}
+
+	@Override
+	public boolean isOldSkinModel() {
+		return isOldSkinModel;
+	}
+
+	@Override
+	public void setIsOldSkinModel(boolean oldSkinModel) {
+		isOldSkinModel = oldSkinModel;
 	}
 }

@@ -19,6 +19,8 @@ package io.github.orioncraftmc.orion.version.v1_5_2.backport.skins.ducks;
 
 public interface EntityPlayerGameProfileDuck {
 	boolean isSlimSkin();
-
 	void setIsSlimSkin(boolean slimSkin);
+
+	boolean isOldSkinModel();
+	void setIsOldSkinModel(boolean oldSkinModel);
 }
