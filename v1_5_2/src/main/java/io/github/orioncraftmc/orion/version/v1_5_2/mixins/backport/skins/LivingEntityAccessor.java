@@ -17,20 +17,12 @@
 
 package io.github.orioncraftmc.orion.version.v1_5_2.mixins.backport.skins;
 
-import io.github.orioncraftmc.orion.backport.hooks.PlayerTexturesHook;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
+import net.minecraft.entity.EntityLiving;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.gen.Accessor;
 
-@Mixin(EntityPlayer.class)
-public abstract class EntityPlayerMixin {
-
-	@Inject(method = "<init>", at = @At("RETURN"))
-	public void setNewSteveTexture(World par1, CallbackInfo ci) {
-		((LivingEntityAccessor) this).setTexture(
-				PlayerTexturesHook.INSTANCE.getPlayerDefaultSkinResourceLocation().getFullPath());
-	}
+@Mixin(EntityLiving.class)
+public interface LivingEntityAccessor {
+	@Accessor()
+	void setTexture(String texture);
 }

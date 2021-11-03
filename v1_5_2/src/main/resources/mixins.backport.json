@@ -2,7 +2,11 @@
   "package": "io.github.orioncraftmc.orion.version.v1_5_2.mixins.backport",
   "compatibilityLevel": "JAVA_16",
   "client": [
+	"skins.LivingEntityAccessor",
+
+	"skins.EntityPlayerEntityMixin",
 	"skins.EntityPlayerMixin",
+
 	"skins.RenderGlobalMixin",
 	"skins.ThreadDownloadImageMixin",
 

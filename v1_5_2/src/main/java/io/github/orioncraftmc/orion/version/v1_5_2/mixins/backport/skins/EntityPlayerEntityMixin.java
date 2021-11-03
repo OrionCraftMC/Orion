@@ -17,20 +17,29 @@
 
 package io.github.orioncraftmc.orion.version.v1_5_2.mixins.backport.skins;
 
-import io.github.orioncraftmc.orion.backport.hooks.PlayerTexturesHook;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.client.entity.EntityOtherPlayerMP;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(EntityPlayer.class)
-public abstract class EntityPlayerMixin {
+@Mixin(value = {EntityPlayerSP.class, EntityOtherPlayerMP.class})
+public abstract class EntityPlayerEntityMixin extends Entity {
+	public EntityPlayerEntityMixin(World world) {
+		super(world);
+	}
 
-	@Inject(method = "<init>", at = @At("RETURN"))
-	public void setNewSteveTexture(World par1, CallbackInfo ci) {
-		((LivingEntityAccessor) this).setTexture(
-				PlayerTexturesHook.INSTANCE.getPlayerDefaultSkinResourceLocation().getFullPath());
+	/**
+	 * @reason Cloaks and Skins are handled by OrionCraft
+	 * @author OrionCraftMc
+	 */
+	@Inject(method = "updateCloak", at = @At("HEAD"), cancellable = true)
+	public void onCloakUpdate(CallbackInfo ci) {
+		ci.cancel();
+		this.skinUrl = "orion_skin_" + getEntityName();
+		this.cloakUrl = "orion_cloak_" + getEntityName();
 	}
 }
