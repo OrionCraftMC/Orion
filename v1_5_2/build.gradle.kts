@@ -10,5 +10,6 @@ lightcraft {
 
     launch {
         enableMixinsDebug = true
+        playerName = "NickAc"
     }
 }
