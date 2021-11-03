@@ -15,7 +15,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.orioncraftmc.orion.version.v1_5_2.mixins.backport.skins;
+package io.github.orioncraftmc.orion.version.v1_5_2.mixins.backport.skins.entity;
 
 import net.minecraft.client.entity.EntityOtherPlayerMP;
 import net.minecraft.client.entity.EntityPlayerSP;

@@ -15,14 +15,13 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.orioncraftmc.orion.version.v1_5_2.mixins.backport.skins;
+package io.github.orioncraftmc.orion.version.v1_5_2.backport.skins.ducks;
 
-import net.minecraft.entity.EntityLiving;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.gen.Accessor;
+import net.minecraft.entity.player.EntityPlayer;
+import org.jetbrains.annotations.Nullable;
 
-@Mixin(EntityLiving.class)
-public interface LivingEntityAccessor {
-	@Accessor()
-	void setTexture(String texture);
+public interface ImageBufferDownloadDuck {
+	@Nullable EntityPlayer getPlayer();
+
+	void setPlayer(@Nullable EntityPlayer player);
 }

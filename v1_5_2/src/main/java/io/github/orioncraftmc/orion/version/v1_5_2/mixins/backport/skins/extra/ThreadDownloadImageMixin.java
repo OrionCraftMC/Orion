@@ -15,11 +15,17 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.orioncraftmc.orion.version.v1_5_2.mixins.backport.skins;
+package io.github.orioncraftmc.orion.version.v1_5_2.mixins.backport.skins.extra;
 
 import io.github.orioncraftmc.orion.backport.hooks.PlayerTexturesHook;
+import io.github.orioncraftmc.orion.version.v1_5_2.backport.skins.ducks.EntityPlayerGameProfileDuck;
+import io.github.orioncraftmc.orion.version.v1_5_2.backport.skins.ducks.ImageBufferDownloadDuck;
+import java.util.function.Consumer;
 import net.minecraft.ThreadDownloadImage;
+import net.minecraft.client.renderer.IImageBuffer;
 import net.minecraft.client.renderer.ThreadDownloadImageData;
+import net.minecraft.entity.player.EntityPlayer;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -38,9 +44,26 @@ public class ThreadDownloadImageMixin {
 	@Final
 	public ThreadDownloadImageData imageData;
 
+	@Shadow
+	@Final
+	public IImageBuffer buffer;
+
 	@Inject(method = "run", at = @At("HEAD"), cancellable = true)
 	public void onDownloadImage(CallbackInfo ci) {
-		PlayerTexturesHook.INSTANCE.fetchPlayerTexture(location, ci::cancel,
-				bufferedImage -> imageData.image = bufferedImage);
+		PlayerTexturesHook.INSTANCE.fetchPlayerTexture(
+				location,
+				ci::cancel,
+				bufferedImage -> imageData.image = bufferedImage,
+				getSlimSkinHandler()
+		);
+	}
+
+	@Nullable
+	private Consumer<Boolean> getSlimSkinHandler() {
+		if (buffer instanceof ImageBufferDownloadDuck) {
+			EntityPlayer player = ((ImageBufferDownloadDuck) buffer).getPlayer();
+			if (player != null) return isSlim -> ((EntityPlayerGameProfileDuck) player).setIsSlimSkin(isSlim);
+		}
+		return null;
 	}
 }

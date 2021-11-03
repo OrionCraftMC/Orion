@@ -2,15 +2,16 @@
   "package": "io.github.orioncraftmc.orion.version.v1_5_2.mixins.backport",
   "compatibilityLevel": "JAVA_16",
   "client": [
-	"skins.LivingEntityAccessor",
+	"skins.entity.EntityPlayerEntityMixin",
+	"skins.entity.EntityPlayerMixin",
 
-	"skins.EntityPlayerEntityMixin",
-	"skins.EntityPlayerMixin",
+	"skins.extra.ImageBufferDownloadMixin",
+	"skins.extra.LivingEntityAccessor",
+	"skins.extra.ThreadDownloadImageMixin",
 
-	"skins.RenderGlobalMixin",
-	"skins.ThreadDownloadImageMixin",
-
-	"skins.RenderPlayerMixin"
+	"skins.render.RenderGlobalMixin",
+	"skins.render.RenderManagerMixin",
+	"skins.render.RenderPlayerMixin"
   ],
   "required": true
 }

@@ -15,16 +15,20 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.orioncraftmc.orion.version.v1_5_2.mixins.backport.skins;
+package io.github.orioncraftmc.orion.version.v1_5_2.mixins.backport.skins.render;
 
+import io.github.orioncraftmc.orion.version.v1_5_2.backport.skins.ducks.ImageBufferDownloadDuck;
 import net.minecraft.client.render.RenderEngine;
 import net.minecraft.client.render.RenderGlobal;
 import net.minecraft.client.renderer.ImageBufferDownload;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.optifine.Config;
 import net.optifine.RandomMobs;
+import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(RenderGlobal.class)
@@ -37,11 +41,11 @@ public class RenderGlobalMixin {
 	 * @reason Skins and Cloaks are fetched manually
 	 * @author OrionCraftMc
 	 */
-	//@Overwrite
-	public void onEntityCreateSus(Entity par1Entity) {
+	@Overwrite
+	public void onEntityCreate(Entity par1Entity) {
 		par1Entity.updateCloak();
 		if (par1Entity.skinUrl != null) {
-			this.renderEngine.obtainImageData(par1Entity.skinUrl, new ImageBufferDownload());
+			this.renderEngine.obtainImageData(par1Entity.skinUrl, createEntityBoundImageBufferDownload(par1Entity));
 		}
 
 		if (par1Entity.cloakUrl != null) {
@@ -52,5 +56,14 @@ public class RenderGlobalMixin {
 			RandomMobs.entityLoaded(par1Entity);
 		}
 
+	}
+
+	@NotNull
+	private ImageBufferDownload createEntityBoundImageBufferDownload(Entity par1Entity) {
+		ImageBufferDownload skinBuffer = new ImageBufferDownload();
+		if (par1Entity instanceof EntityPlayer) {
+			((ImageBufferDownloadDuck) skinBuffer).setPlayer((EntityPlayer) par1Entity);
+		}
+		return skinBuffer;
 	}
 }
