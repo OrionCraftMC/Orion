@@ -20,6 +20,9 @@ package io.github.orioncraftmc.orion.version.v1_5_2.backport.skins;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumAction;
+import net.minecraft.item.ItemStack;
 import org.lwjgl.opengl.GL11;
 
 public class OrionModelPlayer extends ModelBiped {
@@ -127,6 +130,20 @@ public class OrionModelPlayer extends ModelBiped {
 	 */
 	@Override
 	public void setRotationAngles(float float1, float float2, float float3, float float4, float float5, float float6, Entity pk2) {
+		if (pk2 instanceof EntityPlayer entityPlayer) {
+			ItemStack var11 = entityPlayer.inventory.getCurrentItem();
+			heldItemRight = var11 != null ? 1 : 0;
+			if (var11 != null && entityPlayer.getItemInUseCount() > 0) {
+				EnumAction var12 = var11.getItemUseAction();
+				if (var12 == EnumAction.block) {
+					heldItemRight = 3;
+				} else if (var12 == EnumAction.bow) {
+					aimedBow = true;
+				}
+			}
+			isSneak = entityPlayer.isSneaking();
+		}
+
 		super.setRotationAngles(float1, float2, float3, float4, float5, float6, pk2);
 		copyModelAngles(this.bipedLeftLeg, this.bipedLeftLegwear);
 		copyModelAngles(this.bipedRightLeg, this.bipedRightLegwear);

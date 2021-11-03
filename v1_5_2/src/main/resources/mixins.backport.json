@@ -10,7 +10,7 @@
 	"skins.extra.ThreadDownloadImageMixin",
 
 	"skins.render.RenderGlobalMixin",
-	"skins.render.RenderManagerMixin",
+	"skins.render.RenderLivingMixin",
 	"skins.render.RenderPlayerMixin"
   ],
   "required": true
