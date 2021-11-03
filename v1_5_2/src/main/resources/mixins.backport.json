@@ -4,7 +4,9 @@
   "client": [
 	"skins.EntityPlayerMixin",
 	"skins.RenderGlobalMixin",
-	"skins.ThreadDownloadImageMixin"
+	"skins.ThreadDownloadImageMixin",
+
+	"skins.RenderPlayerMixin"
   ],
   "required": true
 }

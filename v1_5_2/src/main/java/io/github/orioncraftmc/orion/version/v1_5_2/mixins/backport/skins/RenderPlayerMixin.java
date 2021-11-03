@@ -17,30 +17,28 @@
 
 package io.github.orioncraftmc.orion.version.v1_5_2.mixins.backport.skins;
 
-import io.github.orioncraftmc.orion.backport.hooks.PlayerTexturesHook;
-import net.minecraft.ThreadDownloadImage;
-import net.minecraft.client.renderer.ThreadDownloadImageData;
-import org.spongepowered.asm.mixin.Final;
+import io.github.orioncraftmc.orion.version.v1_5_2.backport.skins.OrionModelPlayer;
+import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.render.RenderPlayer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(ThreadDownloadImage.class)
-public class ThreadDownloadImageMixin {
-
-	@Shadow
-	@Final
-	public String location;
+@Mixin(RenderPlayer.class)
+public class RenderPlayerMixin {
 
 	@Shadow
-	@Final
-	public ThreadDownloadImageData imageData;
+	public ModelBiped modelBipedMain;
 
-	@Inject(method = "run", at = @At("HEAD"), cancellable = true)
-	public void onDownloadImage(CallbackInfo ci) {
-		PlayerTexturesHook.INSTANCE.fetchPlayerTexture(location, ci::cancel,
-				bufferedImage -> imageData.image = bufferedImage);
+	@Redirect(method = "<init>", at = @At(value = "NEW", target = "net/minecraft/client/model/ModelBiped"))
+	private static ModelBiped onCreatePlayerModel(float v) {
+		return new OrionModelPlayer(v, false);
+	}
+
+	@Redirect(method = "renderFirstPersonArm", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/model/ModelRenderer;render(F)V"))
+	public void onRenderFirstPersonArm(ModelRenderer instance, float v) {
+		((OrionModelPlayer) modelBipedMain).renderRightArm();
 	}
 }
