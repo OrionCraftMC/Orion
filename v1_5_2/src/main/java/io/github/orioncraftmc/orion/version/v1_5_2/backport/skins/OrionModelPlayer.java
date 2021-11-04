@@ -17,6 +17,7 @@
 
 package io.github.orioncraftmc.orion.version.v1_5_2.backport.skins;
 
+import io.github.orioncraftmc.orion.version.v1_5_2.backport.skins.extruded.ExtrudedModelRender;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -39,11 +40,11 @@ public class OrionModelPlayer extends ModelBiped {
 		bct2.rotationPointZ = bct1.rotationPointZ;
 	}
 
-	public ModelRenderer bipedLeftArmwear;
-	public ModelRenderer bipedRightArmwear;
-	public ModelRenderer bipedLeftLegwear;
-	public ModelRenderer bipedRightLegwear;
-	public ModelRenderer bipedBodyWear;
+	public ExtrudedModelRender bipedLeftArmwear;
+	public ExtrudedModelRender bipedRightArmwear;
+	public ExtrudedModelRender bipedLeftLegwear;
+	public ExtrudedModelRender bipedRightLegwear;
+	public ExtrudedModelRender bipedBodyWear;
 	public ModelRenderer bipedCape;
 	public ModelRenderer bipedDeadmau5Head;
 	public boolean smallArms;
@@ -63,33 +64,33 @@ public class OrionModelPlayer extends ModelBiped {
 			this.bipedRightArm = new ModelRenderer(this, 40, 16);
 			this.bipedRightArm.addBox(-2.0f, -2.0f, -2.0f, 3, 12, 4, scaleFactor);
 			this.bipedRightArm.setRotationPoint(-5.0f, 2.5f, 0.0f);
-			this.bipedLeftArmwear = new ModelRenderer(this, 48, 48);
+			this.bipedLeftArmwear = new ExtrudedModelRender(this, 48, 48);
 			this.bipedLeftArmwear.addBox(-1.0f, -2.0f, -2.0f, 3, 12, 4, scaleFactor + 0.25f);
 			this.bipedLeftArmwear.setRotationPoint(5.0f, 2.5f, 0.0f);
-			this.bipedRightArmwear = new ModelRenderer(this, 40, 32);
+			this.bipedRightArmwear = new ExtrudedModelRender(this, 40, 32);
 			this.bipedRightArmwear.addBox(-2.0f, -2.0f, -2.0f, 3, 12, 4, scaleFactor + 0.25f);
 			this.bipedRightArmwear.setRotationPoint(-5.0f, 2.5f, 10.0f);
 		} else {
 			this.bipedLeftArm = new ModelRenderer(this, 32, 48);
 			this.bipedLeftArm.addBox(-1.0f, -2.0f, -2.0f, 4, 12, 4, scaleFactor);
 			this.bipedLeftArm.setRotationPoint(5.0f, 2.0f, 0.0f);
-			this.bipedLeftArmwear = new ModelRenderer(this, 48, 48);
+			this.bipedLeftArmwear = new ExtrudedModelRender(this, 48, 48);
 			this.bipedLeftArmwear.addBox(-1.0f, -2.0f, -2.0f, 4, 12, 4, scaleFactor + 0.25f);
 			this.bipedLeftArmwear.setRotationPoint(5.0f, 2.0f, 0.0f);
-			this.bipedRightArmwear = new ModelRenderer(this, 40, 32);
+			this.bipedRightArmwear = new ExtrudedModelRender(this, 40, 32);
 			this.bipedRightArmwear.addBox(-3.0f, -2.0f, -2.0f, 4, 12, 4, scaleFactor + 0.25f);
 			this.bipedRightArmwear.setRotationPoint(-5.0f, 2.0f, 10.0f);
 		}
 		this.bipedLeftLeg = new ModelRenderer(this, 16, 48);
 		this.bipedLeftLeg.addBox(-2.0f, 0.0f, -2.0f, 4, 12, 4, scaleFactor);
 		this.bipedLeftLeg.setRotationPoint(1.9f, 12.0f, 0.0f);
-		this.bipedLeftLegwear = new ModelRenderer(this, 0, 48);
+		this.bipedLeftLegwear = new ExtrudedModelRender(this, 0, 48);
 		this.bipedLeftLegwear.addBox(-2.0f, 0.0f, -2.0f, 4, 12, 4, scaleFactor + 0.25f);
 		this.bipedLeftLegwear.setRotationPoint(1.9f, 12.0f, 0.0f);
-		this.bipedRightLegwear = new ModelRenderer(this, 0, 32);
+		this.bipedRightLegwear = new ExtrudedModelRender(this, 0, 32);
 		this.bipedRightLegwear.addBox(-2.0f, 0.0f, -2.0f, 4, 12, 4, scaleFactor + 0.25f);
 		this.bipedRightLegwear.setRotationPoint(-1.9f, 12.0f, 0.0f);
-		this.bipedBodyWear = new ModelRenderer(this, 16, 32);
+		this.bipedBodyWear = new ExtrudedModelRender(this, 16, 32);
 		this.bipedBodyWear.addBox(-4.0f, 0.0f, -2.0f, 8, 12, 4, scaleFactor + 0.25f);
 		this.bipedBodyWear.setRotationPoint(0.0f, 0.0f, 0.0f);
 	}
