@@ -27,9 +27,12 @@ public class ExtrudedModelBox extends ModelBox {
 
 	public boolean[] getCorrectVertexOrderPositionsForTranslate(int index) {
 		switch (index) {
-			//case 0: return new boolean[]{true, true, true, true, false, false, true};
-			case 4: return new boolean[]{false, true, false, true, true, true, true};
-			case 5: return new boolean[]{false, true, true, true, true, true, true};
+			case 0:
+			case 4:
+			case 5:
+				return new boolean[]{true, true, true, true, false, false, true};
+			//case 4: return new boolean[]{false, true, false, true, true, true, true};
+			//case 5: return new boolean[]{false, true, true, true, true, true, true};
 		}
 		// Translate X, Translate Y, Translate Z, Scale X, Scale Z, Positive Scale X, Positive Scale Y
 
@@ -40,22 +43,60 @@ public class ExtrudedModelBox extends ModelBox {
 	public void render(Tessellator tessellator, float f) {
 		TexturedQuad[] list = this.quadList;
 		for (int i = 0, listLength = list.length; i < listLength; i++) {
+			if (i != 0 && i != 4) continue;
 			TexturedQuad quad = list[i];
-			Vec3 emptyVec = Vec3.createVectorHelper(0, 0, 0);
-			List<PositionTextureVertex> textureVertices = Arrays.stream(quad.vertexPositions).toList();
-			Comparator<PositionTextureVertex> comparator = Comparator.comparingDouble(
-					o -> o.vector3D.distanceTo(emptyVec));
 
+			Vec3 var3 = this.vertexPositions[1].vector3D.subtract(this.vertexPositions[0].vector3D);
+			Vec3 var4 = this.vertexPositions[1].vector3D.subtract(this.vertexPositions[2].vector3D);
+			Vec3 var5 = var4.crossProduct(var3).normalize();
+
+			if (quad.invertNormal) {
+				GL11.glNormal3f(-((float)var5.xCoord), -((float)var5.yCoord), -((float)var5.zCoord));
+			} else {
+				GL11.glNormal3f((float)var5.xCoord, (float)var5.yCoord, (float)var5.zCoord);
+			}
+
+
+			List<PositionTextureVertex> textureVertices = Arrays.stream(quad.vertexPositions).toList();
+			Comparator<PositionTextureVertex> comparator = (p1, p2) -> {
+				if (p1.texturePositionX < p2.texturePositionX || p1.texturePositionY < p2.texturePositionY)
+					return -1;
+				if (p1.texturePositionX > p2.texturePositionX || p1.texturePositionY > p2.texturePositionY)
+					return 1;
+				return 0;
+			};
 			PositionTextureVertex smallestPos = Collections.min(textureVertices, comparator);
 			PositionTextureVertex biggestPos = Collections.max(textureVertices, comparator);
 
-			boolean[] translationOrder = getCorrectVertexOrderPositionsForTranslate(i
-			);
+			Vec3 size = smallestPos.vector3D.subtract(biggestPos.vector3D);
+			Vec3 sizeVector = size.normalize();
+			float xScaleSign = sizeVector.xCoord == 0.0 ? -1 : 1;
+			float zScaleSign = sizeVector.zCoord == 0.0 ? -1 : 1;
+
+			boolean shouldScaleX = sizeVector.xCoord != 0.0;
+			boolean shouldScaleZ = sizeVector.zCoord != 0.0;
+
+			boolean shouldTranslateX = sizeVector.xCoord == 0.0;
+			boolean shouldTranslateZ = sizeVector.zCoord == 0.0;
+
+			System.out.println("i = " + i);
+			System.out.println("size = " + size);
+			System.out.println("sizeVector = " + sizeVector);
+			System.out.println("xScaleSign = " + xScaleSign);
+			System.out.println("zScaleSign = " + zScaleSign);
+			System.out.println("shouldScaleX = " + shouldScaleX);
+			System.out.println("shouldScaleZ = " + shouldScaleZ);
+
+			System.out.println("shouldTranslateX = " + shouldTranslateX);
+			System.out.println("shouldTranslateZ = " + shouldTranslateZ);
+			System.out.println("quad.invertNormal = " + quad.invertNormal);
+
+			boolean[] translationOrder = getCorrectVertexOrderPositionsForTranslate(i);
 			if (translationOrder == null) continue;
 
-			PositionTextureVertex firstPos = translationOrder[0] ? biggestPos : smallestPos;
-			PositionTextureVertex secondPos = translationOrder[1] ? biggestPos : smallestPos;
-			PositionTextureVertex thirdPos = translationOrder[2] ? biggestPos : smallestPos;
+			PositionTextureVertex firstPos = shouldTranslateX ? biggestPos : smallestPos;
+			PositionTextureVertex secondPos = biggestPos;
+			PositionTextureVertex thirdPos = shouldTranslateZ ? biggestPos : smallestPos;
 
 
 			GL11.glPushMatrix();
@@ -63,12 +104,13 @@ public class ExtrudedModelBox extends ModelBox {
 					((float) secondPos.vector3D.yCoord * f),
 					((float) thirdPos.vector3D.zCoord * f));
 
-			GL11.glScaled(translationOrder[3] ? getScale(smallestPos, biggestPos, v -> v.xCoord) * (translationOrder[5] ? 1 : -1) : 1,
-					-getScale(smallestPos, biggestPos, v -> v.yCoord), translationOrder[4] ? getScale(smallestPos, biggestPos, v -> v.zCoord) * (translationOrder[6] ? 1 : -1) : 1);
+			GL11.glScaled(shouldScaleX ? getScale(smallestPos, biggestPos, v -> v.xCoord) * xScaleSign : 1,
+					-getScale(smallestPos, biggestPos, v -> v.yCoord), shouldScaleZ ? getScale(smallestPos, biggestPos, v -> v.zCoord) * zScaleSign : 1);
 
 			ItemRenderer.renderItemIn2D(tessellator, smallestPos.texturePositionX, smallestPos.texturePositionY,
 					biggestPos.texturePositionX,
 					biggestPos.texturePositionY, (int) textureWidth, (int) textureHeight, 1 / 16f);
+
 			GL11.glPopMatrix();
 
 		}
