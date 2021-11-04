@@ -25,26 +25,16 @@ public class ExtrudedModelBox extends ModelBox {
 		textureHeight = modelRenderer.textureHeight;
 	}
 
-	public boolean[] getCorrectVertexOrderPositionsForTranslate(int index) {
-		switch (index) {
-			case 0:
-			case 4:
-			case 5:
-				return new boolean[]{true, true, true, true, false, false, true};
-			//case 4: return new boolean[]{false, true, false, true, true, true, true};
-			//case 5: return new boolean[]{false, true, true, true, true, true, true};
-		}
-		// Translate X, Translate Y, Translate Z, Scale X, Scale Z, Positive Scale X, Positive Scale Y
-
-		return null;
-	}
-
 	@Override
 	public void render(Tessellator tessellator, float f) {
 		TexturedQuad[] list = this.quadList;
 		for (int i = 0, listLength = list.length; i < listLength; i++) {
-			if (i != 0 && i != 4) continue;
+			if (i != 0/* && i != 4*/) continue;
 			TexturedQuad quad = list[i];
+			if (false) {
+				quad.draw(tessellator, f);
+			} else{
+
 
 			Vec3 var3 = this.vertexPositions[1].vector3D.subtract(this.vertexPositions[0].vector3D);
 			Vec3 var4 = this.vertexPositions[1].vector3D.subtract(this.vertexPositions[2].vector3D);
@@ -55,7 +45,6 @@ public class ExtrudedModelBox extends ModelBox {
 			} else {
 				GL11.glNormal3f((float)var5.xCoord, (float)var5.yCoord, (float)var5.zCoord);
 			}
-
 
 			List<PositionTextureVertex> textureVertices = Arrays.stream(quad.vertexPositions).toList();
 			Comparator<PositionTextureVertex> comparator = (p1, p2) -> {
@@ -70,11 +59,23 @@ public class ExtrudedModelBox extends ModelBox {
 
 			Vec3 size = smallestPos.vector3D.subtract(biggestPos.vector3D);
 			Vec3 sizeVector = size.normalize();
+			boolean isMirroredSide = i == 0 || i == 1;
 			float xScaleSign = sizeVector.xCoord == 0.0 ? -1 : 1;
 			float zScaleSign = sizeVector.zCoord == 0.0 ? -1 : 1;
 
+			if (isMirroredSide) {
+				xScaleSign *= -1.0;
+				zScaleSign *= -1.0;
+			}
+
 			boolean shouldScaleX = sizeVector.xCoord != 0.0;
 			boolean shouldScaleZ = sizeVector.zCoord != 0.0;
+
+
+			if (false && isMirroredSide) {
+				shouldScaleX ^= true;
+				shouldScaleZ ^= true;
+			}
 
 			boolean shouldTranslateX = sizeVector.xCoord == 0.0;
 			boolean shouldTranslateZ = sizeVector.zCoord == 0.0;
@@ -91,15 +92,15 @@ public class ExtrudedModelBox extends ModelBox {
 			System.out.println("shouldTranslateZ = " + shouldTranslateZ);
 			System.out.println("quad.invertNormal = " + quad.invertNormal);
 
-			boolean[] translationOrder = getCorrectVertexOrderPositionsForTranslate(i);
-			if (translationOrder == null) continue;
-
 			PositionTextureVertex firstPos = shouldTranslateX ? biggestPos : smallestPos;
 			PositionTextureVertex secondPos = biggestPos;
 			PositionTextureVertex thirdPos = shouldTranslateZ ? biggestPos : smallestPos;
 
 
 			GL11.glPushMatrix();
+			if (isMirroredSide) {
+				GL11.glRotatef(90, 0, 1, 0);
+			}
 			GL11.glTranslatef(((float) firstPos.vector3D.xCoord * f),
 					((float) secondPos.vector3D.yCoord * f),
 					((float) thirdPos.vector3D.zCoord * f));
@@ -113,6 +114,7 @@ public class ExtrudedModelBox extends ModelBox {
 
 			GL11.glPopMatrix();
 
+			}
 		}
 
 	}
