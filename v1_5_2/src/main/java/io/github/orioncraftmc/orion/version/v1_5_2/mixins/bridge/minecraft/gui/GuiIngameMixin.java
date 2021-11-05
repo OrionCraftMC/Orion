@@ -17,10 +17,9 @@
 
 package io.github.orioncraftmc.orion.version.v1_5_2.mixins.bridge.minecraft.gui;
 
-import io.github.orioncraftmc.orion.api.bridge.rendering.gui.GuiIngameBridge;
-import org.spongepowered.asm.mixin.Mixin;
-
+import io.github.orioncraftmc.orion.api.bridge.gui.GuiIngameBridge;
 import net.minecraft.client.gui.GuiIngame;
+import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(GuiIngame.class)
 public abstract class GuiIngameMixin implements GuiIngameBridge {

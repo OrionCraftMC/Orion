@@ -17,10 +17,27 @@
 
 package io.github.orioncraftmc.orion.version.v1_5_2.mixins.bridge.minecraft.gui;
 
-import io.github.orioncraftmc.orion.api.bridge.rendering.gui.GuiScreenBridge;
+import io.github.orioncraftmc.orion.api.bridge.gui.GuiScreenBridge;
 import net.minecraft.client.gui.GuiScreen;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(GuiScreen.class)
 public abstract class GuiScreenMixin implements GuiScreenBridge {
+
+	@Shadow
+	public int height;
+
+	@Shadow
+	public int width;
+
+	@Override
+	public int getWidth() {
+		return width;
+	}
+
+	@Override
+	public int getHeight() {
+		return height;
+	}
 }

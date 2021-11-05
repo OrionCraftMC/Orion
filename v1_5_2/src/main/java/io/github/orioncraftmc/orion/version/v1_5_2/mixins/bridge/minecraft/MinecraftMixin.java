@@ -17,11 +17,11 @@
 
 package io.github.orioncraftmc.orion.version.v1_5_2.mixins.bridge.minecraft;
 
+import io.github.orioncraftmc.orion.api.bridge.gui.GuiScreenBridge;
 import io.github.orioncraftmc.orion.api.bridge.minecraft.GameSettingsBridge;
 import io.github.orioncraftmc.orion.api.bridge.minecraft.MinecraftBridge;
 import io.github.orioncraftmc.orion.api.bridge.minecraft.ScaledResolutionBridge;
 import io.github.orioncraftmc.orion.api.bridge.rendering.FontRendererBridge;
-import io.github.orioncraftmc.orion.api.bridge.rendering.gui.GuiScreenBridge;
 import io.github.orioncraftmc.orion.api.gui.screens.OrionScreen;
 import io.github.orioncraftmc.orion.version.v1_5_2.bridge.gui.OrionGuiScreen;
 import java.io.File;
