@@ -17,7 +17,7 @@
 
 package io.github.orioncraftmc.orion.version.v1_7_10.mixins.client.branding;
 
-import io.github.orioncraftmc.orion.api.gui.screens.impl.GuiScreenOrionBrandingScreen;
+import io.github.orioncraftmc.orion.screens.GuiScreenOrionBrandingScreen;
 import net.minecraft.client.gui.GuiScreen;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
