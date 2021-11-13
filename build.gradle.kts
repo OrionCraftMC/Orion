@@ -15,6 +15,7 @@ allprojects {
         mavenLocal()
         mavenCentral()
         maven("https://oss.sonatype.org/content/repositories/snapshots/")
+        maven("https://raw.githubusercontent.com/NickAcPT/LightCraftMaven/main/")
     }
 
     apply(plugin = "org.cadixdev.licenser")
