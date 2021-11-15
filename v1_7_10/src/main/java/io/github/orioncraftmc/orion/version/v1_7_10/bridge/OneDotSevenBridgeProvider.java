@@ -19,10 +19,12 @@ package io.github.orioncraftmc.orion.version.v1_7_10.bridge;
 
 import io.github.orioncraftmc.orion.api.bridge.OrionCraftBridgeProvider;
 import io.github.orioncraftmc.orion.api.bridge.minecraft.MinecraftBridge;
+import io.github.orioncraftmc.orion.api.bridge.minecraft.menu.main.MainMenuUtils;
 import io.github.orioncraftmc.orion.api.bridge.minecraft.resources.ResourceLocationUtils;
 import io.github.orioncraftmc.orion.api.bridge.rendering.OpenGlBridge;
 import io.github.orioncraftmc.orion.api.bridge.rendering.TessellatorBridge;
 import io.github.orioncraftmc.orion.api.logging.Logger;
+import io.github.orioncraftmc.orion.version.v1_7_10.bridge.main.MainMenuUtilsImpl;
 import io.github.orioncraftmc.orion.version.v1_7_10.bridge.rendering.OpenGlBridgeImpl;
 import io.github.orioncraftmc.orion.version.v1_7_10.bridge.resources.ResourceLocationUtilsImpl;
 import net.minecraft.client.Minecraft;
@@ -32,6 +34,8 @@ import org.jetbrains.annotations.NotNull;
 public class OneDotSevenBridgeProvider implements OrionCraftBridgeProvider {
 	private final OpenGlBridge openGlBridge = new OpenGlBridgeImpl();
 	private final ResourceLocationUtilsImpl resourceLocationUtils  = new ResourceLocationUtilsImpl();
+	private final MainMenuUtilsImpl mainMenuUtils = new MainMenuUtilsImpl();
+
 
 	@NotNull
 	@Override
@@ -61,5 +65,11 @@ public class OneDotSevenBridgeProvider implements OrionCraftBridgeProvider {
 	@Override
 	public Logger getLogger() {
 		return LoggerBridge.INSTANCE;
+	}
+
+	@NotNull
+	@Override
+	public MainMenuUtils getMainMenuUtils() {
+		return mainMenuUtils;
 	}
 }

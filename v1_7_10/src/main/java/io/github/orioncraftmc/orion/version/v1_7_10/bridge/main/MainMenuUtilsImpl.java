@@ -15,13 +15,13 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.orioncraftmc.orion.version.v1_5_2.bridge.menu.main;
+package io.github.orioncraftmc.orion.version.v1_7_10.bridge.main;
 
 import io.github.orioncraftmc.orion.api.bridge.minecraft.menu.main.MainMenuAction;
 import io.github.orioncraftmc.orion.api.bridge.minecraft.menu.main.MainMenuUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
-import net.minecraft.util.StringTranslate;
+import net.minecraft.client.resources.I18n;
 import org.jetbrains.annotations.NotNull;
 
 public class MainMenuUtilsImpl implements MainMenuUtils {
@@ -33,7 +33,7 @@ public class MainMenuUtilsImpl implements MainMenuUtils {
 		switch (mainMenuAction) {
 			case SINGLEPLAYER -> mc.displayGuiScreen(new GuiSelectWorld(previousScreen));
 			case MULTIPLAYER -> mc.displayGuiScreen(new GuiMultiplayer(previousScreen));
-			case LANGUAGE_PICKER -> mc.displayGuiScreen(new GuiLanguage(previousScreen, mc.gameSettings));
+			case LANGUAGE_PICKER -> mc.displayGuiScreen(new GuiLanguage(previousScreen, mc.gameSettings, mc.getLanguageManager()));
 			case OPTIONS -> mc.displayGuiScreen(new GuiOptions(previousScreen, mc.gameSettings));
 			case EXIT_GAME -> mc.shutdown();
 			default -> {}
@@ -43,7 +43,6 @@ public class MainMenuUtilsImpl implements MainMenuUtils {
 	@NotNull
 	@Override
 	public String getTranslationForMainMenuAction(@NotNull MainMenuAction mainMenuAction) {
-		var stringTranslate = StringTranslate.getInstance();
 
 		String key = switch (mainMenuAction) {
 			case SINGLEPLAYER -> "menu.singleplayer";
@@ -54,6 +53,6 @@ public class MainMenuUtilsImpl implements MainMenuUtils {
 			default -> throw new IllegalArgumentException();
 		};
 
-		return stringTranslate.translateKey(key);
+		return I18n.format(key);
 	}
 }
