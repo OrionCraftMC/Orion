@@ -23,10 +23,12 @@ import io.github.orioncraftmc.orion.api.bridge.minecraft.menu.main.MainMenuUtils
 import io.github.orioncraftmc.orion.api.bridge.minecraft.resources.ResourceLocationUtils;
 import io.github.orioncraftmc.orion.api.bridge.rendering.OpenGlBridge;
 import io.github.orioncraftmc.orion.api.bridge.rendering.TessellatorBridge;
+import io.github.orioncraftmc.orion.api.bridge.rendering.ultralight.UltralightUtils;
 import io.github.orioncraftmc.orion.api.logging.FallbackLogger;
 import io.github.orioncraftmc.orion.api.logging.Logger;
 import io.github.orioncraftmc.orion.version.v1_5_2.bridge.menu.main.MainMenuUtilsImpl;
 import io.github.orioncraftmc.orion.version.v1_5_2.bridge.rendering.OpenGlBridgeImpl;
+import io.github.orioncraftmc.orion.version.v1_5_2.bridge.rendering.ultralight.UltraLightUtilsImpl;
 import io.github.orioncraftmc.orion.version.v1_5_2.bridge.resources.ResourceLocationUtilsImpl;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
@@ -35,6 +37,7 @@ import org.jetbrains.annotations.NotNull;
 public class OneDotFiveBridgeProvider implements OrionCraftBridgeProvider {
 	private final OpenGlBridge openGlBridge = new OpenGlBridgeImpl();
 	private final MainMenuUtilsImpl mainMenuUtils = new MainMenuUtilsImpl();
+	private final UltralightUtils ultralightUtils = new UltraLightUtilsImpl();
 
 	private final ResourceLocationUtilsImpl resourceLocationUtils = new ResourceLocationUtilsImpl();
 
@@ -72,5 +75,11 @@ public class OneDotFiveBridgeProvider implements OrionCraftBridgeProvider {
 	@Override
 	public MainMenuUtils getMainMenuUtils() {
 		return mainMenuUtils;
+	}
+
+	@NotNull
+	@Override
+	public UltralightUtils getUltralightUtils() {
+		return ultralightUtils;
 	}
 }
