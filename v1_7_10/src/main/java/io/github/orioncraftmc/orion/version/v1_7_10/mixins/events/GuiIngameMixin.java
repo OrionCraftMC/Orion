@@ -17,16 +17,15 @@
 
 package io.github.orioncraftmc.orion.version.v1_7_10.mixins.events;
 
-import io.github.orioncraftmc.orion.api.bridge.rendering.gui.GuiIngameBridge;
+import io.github.orioncraftmc.orion.api.bridge.gui.GuiIngameBridge;
 import io.github.orioncraftmc.orion.api.event.EventBus;
 import io.github.orioncraftmc.orion.api.event.impl.HudRenderEvent;
+import net.minecraft.client.gui.GuiIngame;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.At.Shift;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import net.minecraft.client.gui.GuiIngame;
 
 @Mixin(GuiIngame.class)
 public class GuiIngameMixin {
