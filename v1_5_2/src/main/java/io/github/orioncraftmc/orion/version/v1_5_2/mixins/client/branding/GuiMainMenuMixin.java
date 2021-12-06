@@ -17,7 +17,7 @@
 
 package io.github.orioncraftmc.orion.version.v1_5_2.mixins.client.branding;
 
-import io.github.orioncraftmc.orion.screens.MainMenuScreen;
+import io.github.orioncraftmc.orion.screens.menu.main.MainMenuScreen;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
 import org.spongepowered.asm.mixin.Mixin;
@@ -32,7 +32,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class GuiMainMenuMixin extends GuiScreen {
 
 	MainMenuScreen orionMainMenu = new MainMenuScreen() {
-
 		@Override
 		public void superHandleMouseClick(int i, int i1, int i2) {
 			GuiMainMenuMixin.super.mouseClicked(i, i1, i2);
