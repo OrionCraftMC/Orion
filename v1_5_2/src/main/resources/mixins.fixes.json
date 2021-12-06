@@ -1,6 +1,6 @@
 {
   "package": "io.github.orioncraftmc.orion.version.v1_5_2.mixins.fixes",
-  "compatibilityLevel": "JAVA_16",
+  "compatibilityLevel": "JAVA_17",
   "client": [
 	"fps.EntityRenderMixin",
 	"mcoremove.GuiMainMenuMixin",

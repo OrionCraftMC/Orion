@@ -1,6 +1,6 @@
 {
   "package": "io.github.orioncraftmc.orion.version.v1_5_2.mixins.bridge",
-  "compatibilityLevel": "JAVA_16",
+  "compatibilityLevel": "JAVA_17",
   "client": [
 	"minecraft.GameSettingsMixin",
 	"minecraft.MinecraftMixin",
