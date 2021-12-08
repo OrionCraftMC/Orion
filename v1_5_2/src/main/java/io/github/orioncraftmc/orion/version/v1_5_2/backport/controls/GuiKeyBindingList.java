@@ -17,10 +17,9 @@ public class GuiKeyBindingList extends OrionGuiListExtended {
 	public int maxListLabelWidth = 0;
 
 	public GuiKeyBindingList(OrionGuiControls ayj2, Minecraft minecraft) {
-		super(minecraft, ayj2.width, ayj2.height, 63, ayj2.height - 32, 20);
+		super(minecraft, ayj2.width, ayj2.height, 23, ayj2.height - 32, 20);
 		this.field_148191_k = ayj2;
 		this.mc = minecraft;
-		// new IGuiListEntry list
 		this.listEntries = new ArrayList<>();
 
 		KeyBinding[] keybindingsArray = new KeyBinding[minecraft.gameSettings.keyBindings.length];
@@ -85,7 +84,6 @@ public class GuiKeyBindingList extends OrionGuiListExtended {
 
 		public KeyEntry(KeyBinding avb2) {
 			this.keybinding = (VanillaKeybindingBridge) avb2;
-			//TODO: fix i18n
 
 			this.keyDesc = StringTranslate.getInstance().translateKey(avb2.keyDescription);
 			this.btnChangeKeyBinding = new GuiButton(0, 0, 0, 75, 20,
