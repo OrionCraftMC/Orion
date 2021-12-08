@@ -3,12 +3,21 @@
   "compatibilityLevel": "JAVA_17",
   "client": [
 	"fps.EntityRenderMixin",
+
 	"mcoremove.GuiMainMenuMixin",
+
 	"npefix.ServerListMixin",
+
 	"resources.RunnableTitleScreenMixin",
 	"resources.ThreadDownloadResourcesMixin",
+
 	"scaling.MinecraftMixin",
-	"settings.MinecraftMixin"
+
+	"settings.MinecraftMixin",
+
+	"snooper.GuiOptionsMixin",
+	"snooper.PlayerUsageSnooperMixin",
+	"snooper.PlayerUsageSnooperThreadMixin"
   ],
   "required": true
 }
