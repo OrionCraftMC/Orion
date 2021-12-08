@@ -19,12 +19,14 @@ package io.github.orioncraftmc.orion.version.v1_5_2.bridge;
 
 import io.github.orioncraftmc.orion.api.bridge.OrionCraftBridgeProvider;
 import io.github.orioncraftmc.orion.api.bridge.minecraft.MinecraftBridge;
+import io.github.orioncraftmc.orion.api.bridge.minecraft.input.KeybindingUtils;
 import io.github.orioncraftmc.orion.api.bridge.minecraft.menu.main.MainMenuUtils;
 import io.github.orioncraftmc.orion.api.bridge.minecraft.resources.ResourceLocationUtils;
 import io.github.orioncraftmc.orion.api.bridge.rendering.OpenGlBridge;
 import io.github.orioncraftmc.orion.api.bridge.rendering.TessellatorBridge;
 import io.github.orioncraftmc.orion.api.logging.FallbackLogger;
 import io.github.orioncraftmc.orion.api.logging.Logger;
+import io.github.orioncraftmc.orion.version.v1_5_2.bridge.input.KeybindingUtilsImpl;
 import io.github.orioncraftmc.orion.version.v1_5_2.bridge.menu.main.MainMenuUtilsImpl;
 import io.github.orioncraftmc.orion.version.v1_5_2.bridge.rendering.OpenGlBridgeImpl;
 import io.github.orioncraftmc.orion.version.v1_5_2.bridge.resources.ResourceLocationUtilsImpl;
@@ -35,7 +37,7 @@ import org.jetbrains.annotations.NotNull;
 public class OneDotFiveBridgeProvider implements OrionCraftBridgeProvider {
 	private final OpenGlBridge openGlBridge = new OpenGlBridgeImpl();
 	private final MainMenuUtilsImpl mainMenuUtils = new MainMenuUtilsImpl();
-
+	private final KeybindingUtilsImpl keybindingUtilsImpl = new KeybindingUtilsImpl();
 	private final ResourceLocationUtilsImpl resourceLocationUtils = new ResourceLocationUtilsImpl();
 
 	@NotNull
@@ -72,5 +74,11 @@ public class OneDotFiveBridgeProvider implements OrionCraftBridgeProvider {
 	@Override
 	public MainMenuUtils getMainMenuUtils() {
 		return mainMenuUtils;
+	}
+
+	@NotNull
+	@Override
+	public KeybindingUtils getKeybindingUtils() {
+		return keybindingUtilsImpl;
 	}
 }

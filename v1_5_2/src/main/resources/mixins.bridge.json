@@ -10,8 +10,10 @@
 	"minecraft.gui.GuiMixin",
 	"minecraft.gui.GuiScreenMixin",
 
-	"rendering.TessellatorMixin",
-	"rendering.FontRendererMixin"
+	"minecraft.input.KeybindingMixin",
+
+	"rendering.FontRendererMixin",
+	"rendering.TessellatorMixin"
   ],
   "required": true
 }
