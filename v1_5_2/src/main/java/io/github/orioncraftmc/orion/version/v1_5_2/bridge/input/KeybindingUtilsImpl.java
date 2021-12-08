@@ -35,6 +35,8 @@ public class KeybindingUtilsImpl implements KeybindingUtils {
 		System.arraycopy(keyBindings, 0, newKeyBindings, 0, keyBindings.length);
 		newKeyBindings[keyBindings.length] = keybinding;
 		gameSettings.keyBindings = newKeyBindings;
+
+		KeyBinding.resetKeyBindingArrayAndHash();
 	}
 
 	@NotNull
