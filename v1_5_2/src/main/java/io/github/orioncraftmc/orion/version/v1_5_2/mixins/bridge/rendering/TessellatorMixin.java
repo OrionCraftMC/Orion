@@ -19,14 +19,10 @@ package io.github.orioncraftmc.orion.version.v1_5_2.mixins.bridge.rendering;
 
 import io.github.orioncraftmc.orion.api.bridge.rendering.DrawMode;
 import io.github.orioncraftmc.orion.api.bridge.rendering.TessellatorBridge;
+import net.minecraft.client.renderer.Tessellator;
 import org.jetbrains.annotations.NotNull;
 import org.lwjgl.opengl.GL11;
-import org.spongepowered.asm.mixin.Implements;
-import org.spongepowered.asm.mixin.Interface;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-
-import net.minecraft.client.renderer.Tessellator;
+import org.spongepowered.asm.mixin.*;
 
 @Mixin(Tessellator.class)
 @Implements(@Interface(iface = TessellatorBridge.class, prefix = "bridge$"))

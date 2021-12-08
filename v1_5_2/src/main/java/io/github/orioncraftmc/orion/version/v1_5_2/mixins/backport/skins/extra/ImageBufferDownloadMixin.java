@@ -26,6 +26,7 @@ import org.spongepowered.asm.mixin.Mixin;
 @Mixin(ImageBufferDownload.class)
 public class ImageBufferDownloadMixin implements ImageBufferDownloadDuck {
 	private EntityPlayer player = null;
+
 	@Nullable
 	@Override
 	public EntityPlayer getPlayer() {

@@ -20,10 +20,7 @@ package io.github.orioncraftmc.orion.version.v1_5_2.mixins.bridge.rendering;
 import io.github.orioncraftmc.orion.api.bridge.rendering.FontRendererBridge;
 import net.minecraft.client.gui.FontRenderer;
 import org.jetbrains.annotations.NotNull;
-import org.spongepowered.asm.mixin.Implements;
-import org.spongepowered.asm.mixin.Interface;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.*;
 
 @Mixin(FontRenderer.class)
 @Implements(@Interface(iface = FontRendererBridge.class, prefix = "bridge$"))

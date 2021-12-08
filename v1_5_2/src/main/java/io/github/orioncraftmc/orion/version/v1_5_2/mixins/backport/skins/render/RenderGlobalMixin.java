@@ -26,10 +26,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.optifine.Config;
 import net.optifine.RandomMobs;
 import org.jetbrains.annotations.NotNull;
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.*;
 
 @Mixin(RenderGlobal.class)
 public class RenderGlobalMixin {

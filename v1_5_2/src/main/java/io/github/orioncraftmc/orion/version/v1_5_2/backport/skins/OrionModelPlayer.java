@@ -27,18 +27,6 @@ import org.lwjgl.opengl.GL11;
 
 public class OrionModelPlayer extends ModelBiped {
 
-	/**
-	 * Copies the angles from one object to another. This is used when objects should stay aligned with each other, like the hair over a players head.
-	 */
-	public static void copyModelAngles(ModelRenderer bct1, ModelRenderer bct2) {
-		bct2.rotateAngleX = bct1.rotateAngleX;
-		bct2.rotateAngleY = bct1.rotateAngleY;
-		bct2.rotateAngleZ = bct1.rotateAngleZ;
-		bct2.rotationPointX = bct1.rotationPointX;
-		bct2.rotationPointY = bct1.rotationPointY;
-		bct2.rotationPointZ = bct1.rotationPointZ;
-	}
-
 	public ModelRenderer bipedLeftArmwear;
 	public ModelRenderer bipedRightArmwear;
 	public ModelRenderer bipedLeftLegwear;
@@ -92,6 +80,18 @@ public class OrionModelPlayer extends ModelBiped {
 		this.bipedBodyWear = new ModelRenderer(this, 16, 32);
 		this.bipedBodyWear.addBox(-4.0f, 0.0f, -2.0f, 8, 12, 4, scaleFactor + 0.25f);
 		this.bipedBodyWear.setRotationPoint(0.0f, 0.0f, 0.0f);
+	}
+
+	/**
+	 * Copies the angles from one object to another. This is used when objects should stay aligned with each other, like the hair over a players head.
+	 */
+	public static void copyModelAngles(ModelRenderer bct1, ModelRenderer bct2) {
+		bct2.rotateAngleX = bct1.rotateAngleX;
+		bct2.rotateAngleY = bct1.rotateAngleY;
+		bct2.rotateAngleZ = bct1.rotateAngleZ;
+		bct2.rotationPointX = bct1.rotationPointX;
+		bct2.rotationPointY = bct1.rotationPointY;
+		bct2.rotationPointZ = bct1.rotationPointZ;
 	}
 
 	@Override

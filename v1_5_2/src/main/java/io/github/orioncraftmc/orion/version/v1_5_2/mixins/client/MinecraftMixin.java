@@ -21,33 +21,20 @@ import io.github.orioncraftmc.orion.api.OrionCraft;
 import io.github.orioncraftmc.orion.api.OrionCraftConstants;
 import io.github.orioncraftmc.orion.api.meta.ClientVersion;
 import io.github.orioncraftmc.orion.version.v1_5_2.bridge.OneDotFiveBridgeProvider;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import net.minecraft.client.Minecraft;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Constant;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyConstant;
-import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Minecraft.class)
 public class MinecraftMixin {
-
-	@Inject(method = "startGame", at = @At("HEAD"))
-	private void onStartGame(CallbackInfo ci) {
-		OrionCraft.INSTANCE.setOrionCraftBridgesEntrypoint(new OneDotFiveBridgeProvider());
-	}
-
 
 	@ModifyConstant(method = "main", constant = @Constant(stringValue = "Minecraft"))
 	private static String onSetFrameTitle(String original) {
 		OrionCraft.INSTANCE.startGameEntrypoint(ClientVersion.MC_1_5_2);
 		return OrionCraftConstants.INSTANCE.getClientTitle();
 	}
-
 
 	@Redirect(method = "main", at = @At(value = "INVOKE", target = "java/util/Map.put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;"))
 	private static <K, V> V onPutUsername(Map<K, V> instance, K k, V v, String[] args) {
@@ -68,5 +55,10 @@ public class MinecraftMixin {
 
 		instance.put(k, v);
 		return v;
+	}
+
+	@Inject(method = "startGame", at = @At("HEAD"))
+	private void onStartGame(CallbackInfo ci) {
+		OrionCraft.INSTANCE.setOrionCraftBridgesEntrypoint(new OneDotFiveBridgeProvider());
 	}
 }

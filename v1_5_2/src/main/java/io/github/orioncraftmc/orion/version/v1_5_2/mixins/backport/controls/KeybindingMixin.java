@@ -30,7 +30,8 @@ public class KeybindingMixin implements Comparable<KeyBinding> {
 	public int compareTo(@NotNull KeyBinding other) {
 		int comparisonIndex = StringTranslate.getInstance()
 				.translateKey(NostalgiaKeybindingsHook.INSTANCE.getKeybindingCategory(((VanillaKeybindingBridge) this)))
-				.compareTo(StringTranslate.getInstance().translateKey(NostalgiaKeybindingsHook.INSTANCE.getKeybindingCategory(((VanillaKeybindingBridge) other))));
+				.compareTo(StringTranslate.getInstance().translateKey(
+						NostalgiaKeybindingsHook.INSTANCE.getKeybindingCategory(((VanillaKeybindingBridge) other))));
 		if (comparisonIndex == 0) {
 			comparisonIndex = StringTranslate.getInstance()
 					.translateKey(((VanillaKeybindingBridge) this).getDescription()).compareTo(

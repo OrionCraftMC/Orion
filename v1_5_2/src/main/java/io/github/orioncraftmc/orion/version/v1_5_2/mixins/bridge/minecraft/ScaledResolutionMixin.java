@@ -19,10 +19,7 @@ package io.github.orioncraftmc.orion.version.v1_5_2.mixins.bridge.minecraft;
 
 import io.github.orioncraftmc.orion.api.bridge.minecraft.ScaledResolutionBridge;
 import net.minecraft.client.gui.ScaledResolution;
-import org.spongepowered.asm.mixin.Implements;
-import org.spongepowered.asm.mixin.Interface;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.*;
 
 @Mixin(ScaledResolution.class)
 @Implements(@Interface(iface = ScaledResolutionBridge.class, prefix = "bridge$"))

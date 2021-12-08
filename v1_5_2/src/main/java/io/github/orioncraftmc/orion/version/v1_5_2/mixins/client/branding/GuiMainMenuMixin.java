@@ -20,12 +20,8 @@ package io.github.orioncraftmc.orion.version.v1_5_2.mixins.client.branding;
 import io.github.orioncraftmc.orion.screens.menu.main.MainMenuScreen;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyConstant;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(GuiMainMenu.class)
@@ -48,17 +44,17 @@ public abstract class GuiMainMenuMixin extends GuiScreen {
 		}
 	};
 
-	@Inject(method = "initGui", at = @At("TAIL"))
-	public void onInitGui(CallbackInfo ci) {
-		orionMainMenu.internalOnResize();
-	}
-
 	@ModifyConstant(method = "<clinit>")
 	private static String onVanillaPanoramaCreation(String original) {
 		if (original.startsWith("/title/bg/panorama")) {
 			return "/assets/orion/panorama/panorama_" + original.substring(18);
 		}
 		return original;
+	}
+
+	@Inject(method = "initGui", at = @At("TAIL"))
+	public void onInitGui(CallbackInfo ci) {
+		orionMainMenu.internalOnResize();
 	}
 
 	@Shadow

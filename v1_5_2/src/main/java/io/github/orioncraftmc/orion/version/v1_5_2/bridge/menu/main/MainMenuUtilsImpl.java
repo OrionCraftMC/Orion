@@ -36,7 +36,8 @@ public class MainMenuUtilsImpl implements MainMenuUtils {
 			case LANGUAGE_PICKER -> mc.displayGuiScreen(new GuiLanguage(previousScreen, mc.gameSettings));
 			case OPTIONS -> mc.displayGuiScreen(new GuiOptions(previousScreen, mc.gameSettings));
 			case EXIT_GAME -> mc.shutdown();
-			default -> {}
+			default -> {
+			}
 		}
 	}
 

@@ -32,11 +32,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(RenderPlayer.class)
 public class RenderPlayerMixin implements RenderPlayerDuck {
 
-	@Shadow
-	public ModelBiped modelBipedMain;
-
 	private final OrionModelPlayer slimArmsModel = new OrionModelPlayer(0.0f, true);
 	private final ModelBiped oldSkinModel = new ModelBiped();
+	@Shadow
+	public ModelBiped modelBipedMain;
 
 	@Redirect(method = "<init>", at = @At(value = "NEW", target = "net/minecraft/client/model/ModelBiped"))
 	private static ModelBiped onCreatePlayerModel(float v) {
@@ -47,12 +46,13 @@ public class RenderPlayerMixin implements RenderPlayerDuck {
 		if (v == 1.0) v = 0.75f;
 		return new ModelBiped(v);
 	}
+
 	@Inject(method = "renderFirstPersonArm", at = @At("RETURN"))
 	private void onRenderArmEnd(CallbackInfo info) {
 		GL11.glEnable(GL11.GL_CULL_FACE);
 	}
 
-	@Inject(method="renderFirstPersonArm", at=@At("HEAD"))
+	@Inject(method = "renderFirstPersonArm", at = @At("HEAD"))
 	protected void onRenderArmStart(EntityPlayer par1, CallbackInfo ci) {
 		GL11.glDisable(GL11.GL_CULL_FACE);
 	}

@@ -21,7 +21,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import org.jetbrains.annotations.Nullable;
 
 public interface ImageBufferDownloadDuck {
-	@Nullable EntityPlayer getPlayer();
+	@Nullable
+	EntityPlayer getPlayer();
 
 	void setPlayer(@Nullable EntityPlayer player);
 }

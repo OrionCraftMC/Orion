@@ -23,13 +23,13 @@ import net.minecraft.client.gui.GuiScreen;
 public class OrionGuiScreen extends GuiScreen {
 	private final OrionScreen screen;
 
+	public OrionGuiScreen(OrionScreen screen) {
+		this.screen = screen;
+	}
+
 	@Override
 	public void initGui() {
 		screen.internalOnResize();
-	}
-
-	public OrionGuiScreen(OrionScreen screen) {
-		this.screen = screen;
 	}
 
 	@Override

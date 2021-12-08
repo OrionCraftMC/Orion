@@ -26,10 +26,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ThreadDownloadResources.class)
 public abstract class ThreadDownloadResourcesMixin {
 
-    @Inject(method = "run", at = @At("HEAD"), cancellable = true)
-    public void onRun(CallbackInfo ci) {
-        // Resources are downloaded by the launchers now
-        ci.cancel();
-    }
+	@Inject(method = "run", at = @At("HEAD"), cancellable = true)
+	public void onRun(CallbackInfo ci) {
+		// Resources are downloaded by the launchers now
+		ci.cancel();
+	}
 
 }
