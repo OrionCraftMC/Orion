@@ -7,7 +7,9 @@
 
 	"branding.GuiMainMenuMixin",
 	"branding.MinecraftMixin",
-	"branding.GuiScreenMixin"
+	"branding.GuiScreenMixin",
+
+	"locale.StringTranslateMixin"
   ],
   "required": true
 }
