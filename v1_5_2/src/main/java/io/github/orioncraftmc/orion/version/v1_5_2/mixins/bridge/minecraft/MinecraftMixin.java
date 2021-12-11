@@ -20,12 +20,14 @@ package io.github.orioncraftmc.orion.version.v1_5_2.mixins.bridge.minecraft;
 import io.github.orioncraftmc.orion.api.bridge.gui.GuiScreenBridge;
 import io.github.orioncraftmc.orion.api.bridge.minecraft.*;
 import io.github.orioncraftmc.orion.api.bridge.rendering.FontRendererBridge;
+import io.github.orioncraftmc.orion.api.bridge.rendering.RenderEngineBridge;
 import io.github.orioncraftmc.orion.api.gui.screens.OrionScreen;
 import io.github.orioncraftmc.orion.version.v1_5_2.bridge.gui.OrionGuiScreen;
 import java.io.File;
 import net.minecraft.EntityClientPlayerMP;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
+import net.minecraft.client.render.RenderEngine;
 import net.minecraft.client.settings.GameSettings;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -53,6 +55,9 @@ public abstract class MinecraftMixin implements MinecraftBridge {
 
 	@Shadow
 	public abstract void displayGuiScreen(GuiScreen guiScreen);
+
+	@Shadow
+	public RenderEngine renderEngine;
 
 	@NotNull
 	@Override
@@ -117,5 +122,11 @@ public abstract class MinecraftMixin implements MinecraftBridge {
 	@Override
 	public int getCurrentFps() {
 		return Minecraft.debugFPS;
+	}
+
+	@NotNull
+	@Override
+	public RenderEngineBridge getRenderEngine() {
+		return (RenderEngineBridge) renderEngine;
 	}
 }
