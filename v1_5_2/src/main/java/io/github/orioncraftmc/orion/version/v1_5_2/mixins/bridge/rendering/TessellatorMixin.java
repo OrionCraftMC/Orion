@@ -41,8 +41,11 @@ public abstract class TessellatorMixin {
 		draw();
 	}
 
-	public void bridge$setColor(int i, int i1, int i2, int i3) {
+	public void bridge$setTesselatorColor(int i, int i1, int i2, int i3) {
 		setColorRGBA(i, i1, i2, i3);
+	}
+
+	public void bridge$setColor(int i, int i1, int i2, int i3) {
 		GL11.glColor4f(i / 255f, i1 / 255f, i2 / 255f, i3 / 255f);
 	}
 
