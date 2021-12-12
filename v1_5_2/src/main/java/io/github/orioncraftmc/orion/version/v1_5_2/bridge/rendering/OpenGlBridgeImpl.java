@@ -17,33 +17,23 @@
 
 package io.github.orioncraftmc.orion.version.v1_5_2.bridge.rendering;
 
+import io.github.orioncraftmc.orion.api.bridge.rendering.GlCapability;
 import io.github.orioncraftmc.orion.api.bridge.rendering.OpenGlBridge;
+import org.jetbrains.annotations.NotNull;
 import org.lwjgl.opengl.GL11;
 
 public class OpenGlBridgeImpl implements OpenGlBridge {
-	@Override
-	public void disableBlend() {
-		GL11.glDisable(GL11.GL_BLEND);
-	}
-
-	@Override
-	public void disableTexture2D() {
-		GL11.glDisable(GL11.GL_TEXTURE_2D);
-	}
-
-	@Override
-	public void enableBlend() {
-		GL11.glEnable(GL11.GL_BLEND);
+	private int glCapabilityToGlConstant(GlCapability glCapability) {
+		return switch (glCapability) {
+			case BLEND -> GL11.GL_BLEND;
+			case CULL_FACE -> GL11.GL_CULL_FACE;
+			case TEXTURE_2D -> GL11.GL_TEXTURE_2D;
+		};
 	}
 
 	@Override
 	public void enableBlendAlphaMinusSrcAlpha() {
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-	}
-
-	@Override
-	public void enableTexture2D() {
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
 	}
 
 	@Override
@@ -74,5 +64,15 @@ public class OpenGlBridgeImpl implements OpenGlBridge {
 	@Override
 	public void setLineWidth(float v) {
 		GL11.glLineWidth(v);
+	}
+
+	@Override
+	public void enableCapability(@NotNull GlCapability glCapability) {
+		GL11.glEnable(glCapabilityToGlConstant(glCapability));
+	}
+
+	@Override
+	public void disableCapability(@NotNull GlCapability glCapability) {
+		GL11.glDisable(glCapabilityToGlConstant(glCapability));
 	}
 }
