@@ -17,8 +17,8 @@
 
 package io.github.orioncraftmc.orion.version.v1_5_2.bridge.input;
 
-import io.github.orioncraftmc.orion.api.bridge.minecraft.input.KeybindingUtils;
-import io.github.orioncraftmc.orion.api.bridge.minecraft.input.VanillaKeybindingBridge;
+import io.github.orioncraftmc.orion.api.bridge.input.KeybindingUtils;
+import io.github.orioncraftmc.orion.api.bridge.input.VanillaKeybindingBridge;
 import io.github.orioncraftmc.orion.api.keybinding.OrionKeybinding;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.GameSettings;

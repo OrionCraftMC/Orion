@@ -17,8 +17,8 @@
 
 package io.github.orioncraftmc.orion.version.v1_5_2.bridge.menu.main;
 
-import io.github.orioncraftmc.orion.api.bridge.minecraft.menu.main.MainMenuAction;
-import io.github.orioncraftmc.orion.api.bridge.minecraft.menu.main.MainMenuUtils;
+import io.github.orioncraftmc.orion.api.bridge.main.MainMenuAction;
+import io.github.orioncraftmc.orion.api.bridge.main.MainMenuUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
 import net.minecraft.util.StringTranslate;

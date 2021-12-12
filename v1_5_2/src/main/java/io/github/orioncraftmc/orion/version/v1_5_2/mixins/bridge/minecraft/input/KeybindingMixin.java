@@ -17,7 +17,7 @@
 
 package io.github.orioncraftmc.orion.version.v1_5_2.mixins.bridge.minecraft.input;
 
-import io.github.orioncraftmc.orion.api.bridge.minecraft.input.VanillaKeybindingBridge;
+import io.github.orioncraftmc.orion.api.bridge.input.VanillaKeybindingBridge;
 import net.minecraft.client.settings.KeyBinding;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;

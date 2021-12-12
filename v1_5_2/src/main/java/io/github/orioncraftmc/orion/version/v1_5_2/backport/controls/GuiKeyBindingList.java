@@ -17,7 +17,7 @@
 
 package io.github.orioncraftmc.orion.version.v1_5_2.backport.controls;
 
-import io.github.orioncraftmc.orion.api.bridge.minecraft.input.VanillaKeybindingBridge;
+import io.github.orioncraftmc.orion.api.bridge.input.VanillaKeybindingBridge;
 import io.github.orioncraftmc.orion.backport.hooks.NostalgiaKeybindingsHook;
 import java.util.*;
 import net.minecraft.client.Minecraft;
