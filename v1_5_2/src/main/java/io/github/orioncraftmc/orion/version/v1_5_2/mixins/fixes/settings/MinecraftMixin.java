@@ -35,6 +35,7 @@ public class MinecraftMixin {
 	@Redirect(method = "startGame", at = @At(value = "NEW",
 			target = "net/minecraft/client/settings/GameSettings"))
 	public GameSettings onNewGameSettings(Minecraft par1Minecraft, File par2File) {
+		// For some reason, the game settings are initialized twice by the game.
 		if (gameSettings != null) {
 			gameSettings.mc = par1Minecraft;
 			Config.setGameSettings(gameSettings);

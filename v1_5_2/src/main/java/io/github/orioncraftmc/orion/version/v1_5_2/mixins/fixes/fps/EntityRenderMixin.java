@@ -29,8 +29,8 @@ public class EntityRenderMixin {
 
 	@Inject(method = "performanceToFps", cancellable = true, at = @At("HEAD"))
 	private static void onPerformanceToFps(int par0, CallbackInfoReturnable<Integer> cir) {
-		// Make performanceToFps return the FPS limit
-		// Removes the FPS lock on menus
+		// Remove the FPS lock on menus
+		// TODO: Implement setting for this in the client config
 		int fpsLimit = Minecraft.getMinecraft().gameSettings.ofLimitFramerateFine;
 		if (fpsLimit <= 0) {
 			fpsLimit = 10000;

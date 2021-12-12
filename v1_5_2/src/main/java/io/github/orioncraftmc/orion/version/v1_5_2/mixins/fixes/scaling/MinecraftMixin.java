@@ -28,7 +28,7 @@ public class MinecraftMixin {
 
 	@Inject(method = "main", at = @At("HEAD"))
 	private static void onMain(CallbackInfo ci) {
-		// Fix scaling on Hi-DPI screens
+		// Fix scaling on Hi-DPI screens.
 		if (!System.getProperty("java.specification.version").startsWith("1.")) {
 			System.setProperty("sun.java2d.uiScale", "1.0");
 			System.setProperty("prism.allowhidpi", "false");

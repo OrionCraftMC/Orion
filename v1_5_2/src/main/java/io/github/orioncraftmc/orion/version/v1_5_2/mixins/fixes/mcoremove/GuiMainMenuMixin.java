@@ -29,6 +29,7 @@ public class GuiMainMenuMixin {
 
 	@Inject(method = "addRealmsButton", at = @At("HEAD"), cancellable = true)
 	public void removeMcoButton(StringTranslate i, int j, int par3, CallbackInfo ci) {
+		// Minecraft Realms is only available in the latest version of Minecraft.
 		ci.cancel();
 	}
 }

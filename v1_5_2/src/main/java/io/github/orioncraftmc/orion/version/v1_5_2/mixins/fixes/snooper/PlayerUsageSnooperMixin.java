@@ -36,7 +36,6 @@ public class PlayerUsageSnooperMixin {
 
 	/**
 	 * NO-OP this call
-	 *
 	 * @author OrionCraftMc
 	 */
 	@Overwrite
@@ -45,7 +44,6 @@ public class PlayerUsageSnooperMixin {
 
 	/**
 	 * NO-OP this call
-	 *
 	 * @author OrionCraftMc
 	 */
 	@Overwrite
@@ -54,7 +52,6 @@ public class PlayerUsageSnooperMixin {
 
 	/**
 	 * NO-OP this call
-	 *
 	 * @author OrionCraftMc
 	 */
 	@Overwrite
@@ -63,7 +60,6 @@ public class PlayerUsageSnooperMixin {
 
 	/**
 	 * NO-OP this call
-	 *
 	 * @author OrionCraftMc
 	 */
 	@Overwrite

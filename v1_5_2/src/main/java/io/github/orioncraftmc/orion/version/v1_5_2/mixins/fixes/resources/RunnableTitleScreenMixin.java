@@ -28,7 +28,8 @@ public class RunnableTitleScreenMixin {
 
 	@Inject(method = "run", at = @At("HEAD"), cancellable = true)
 	public void onRun(CallbackInfo ci) {
-		// Stop attempting to check if 1.6 has released. It has, but we don't care
+		// Stop attempting to check if 1.6 has released.
+		// It has already been released, but the user can use the 1.6.4 version.
 		ci.cancel();
 	}
 

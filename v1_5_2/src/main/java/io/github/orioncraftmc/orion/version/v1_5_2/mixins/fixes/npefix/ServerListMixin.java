@@ -36,7 +36,7 @@ public class ServerListMixin {
 	public void onGetTagListFromCompound(CallbackInfo ci, @Nullable NBTTagCompound serversCompound) {
 		if (serversCompound == null) {
 			// If the servers.dat file doesn't exist, this will be null.
-			// Since there is no null check, an NPE is thrown
+			// Since there is no null check, an NPE is thrown.
 			ci.cancel();
 		}
 	}

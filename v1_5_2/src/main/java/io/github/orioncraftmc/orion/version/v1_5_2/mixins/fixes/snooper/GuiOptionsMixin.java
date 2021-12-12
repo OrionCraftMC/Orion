@@ -28,6 +28,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public class GuiOptionsMixin {
 	@Redirect(method = "initGui", at = @At(value = "INVOKE", target = "Ljava/util/List;add(Ljava/lang/Object;)Z"))
 	public <E> boolean onAddSnooperButton(List<E> instance, E e) {
+		// Snooper is long gone, so don't even bother adding the button to the gui.
 		if (e instanceof GuiButton button) {
 			if (button.id == 104) {
 				return true;
