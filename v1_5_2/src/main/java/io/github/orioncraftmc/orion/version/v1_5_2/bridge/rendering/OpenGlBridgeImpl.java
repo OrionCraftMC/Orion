@@ -17,7 +17,7 @@
 
 package io.github.orioncraftmc.orion.version.v1_5_2.bridge.rendering;
 
-import io.github.orioncraftmc.orion.api.bridge.rendering.GlCapability;
+import io.github.orioncraftmc.orion.api.bridge.rendering.enums.GlCapability;
 import io.github.orioncraftmc.orion.api.bridge.rendering.OpenGlBridge;
 import org.jetbrains.annotations.NotNull;
 import org.lwjgl.opengl.GL11;

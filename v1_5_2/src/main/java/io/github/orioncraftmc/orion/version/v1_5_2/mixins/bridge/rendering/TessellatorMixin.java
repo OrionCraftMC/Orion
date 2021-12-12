@@ -17,7 +17,7 @@
 
 package io.github.orioncraftmc.orion.version.v1_5_2.mixins.bridge.rendering;
 
-import io.github.orioncraftmc.orion.api.bridge.rendering.DrawMode;
+import io.github.orioncraftmc.orion.api.bridge.rendering.enums.DrawMode;
 import io.github.orioncraftmc.orion.api.bridge.rendering.TessellatorBridge;
 import net.minecraft.client.renderer.Tessellator;
 import org.jetbrains.annotations.NotNull;
