@@ -15,14 +15,27 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.orioncraftmc.orion.version.v1_5_2.backport.skins.ducks;
+package io.github.orioncraftmc.orion.version.v1_5_2.mixins.bridge.entity;
 
-import net.minecraft.entity.player.EntityPlayer;
-import org.jetbrains.annotations.Nullable;
+import io.github.orioncraftmc.orion.api.bridge.entity.EntityLivingBridge;
+import net.minecraft.entity.EntityLiving;
+import org.jetbrains.annotations.NotNull;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 
-public interface ImageBufferDownloadDuck {
-	@Nullable
-	EntityPlayer getPlayer();
+@Mixin(EntityLiving.class)
+public abstract class EntityLivingMixin implements EntityLivingBridge {
+	@Shadow
+	protected String texture;
 
-	void setPlayer(@Nullable EntityPlayer player);
+	@NotNull
+	@Override
+	public String getTexture() {
+		return texture;
+	}
+
+	@Override
+	public void setTexture(@NotNull String s) {
+		texture = s;
+	}
 }

@@ -15,26 +15,34 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.orioncraftmc.orion.version.v1_5_2.mixins.backport.skins.extra;
+package io.github.orioncraftmc.orion.version.v1_5_2.mixins.bridge.entity;
 
 import io.github.orioncraftmc.orion.api.bridge.entity.EntityPlayerBridge;
-import io.github.orioncraftmc.orion.api.bridge.rendering.download.ImageBufferDownloadBridge;
-import net.minecraft.client.renderer.ImageBufferDownload;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.entity.player.EntityPlayer;
 import org.spongepowered.asm.mixin.Mixin;
 
-@Mixin(ImageBufferDownload.class)
-public class ImageBufferDownloadMixin implements ImageBufferDownloadBridge {
-	private EntityPlayerBridge player = null;
+@Mixin(EntityPlayer.class)
+public abstract class EntityPlayerMixin implements EntityPlayerBridge {
+	private boolean isSlimSkinModel = false;
+	private boolean isOldSkinModel = false;
 
-	@Nullable
 	@Override
-	public EntityPlayerBridge getPlayer() {
-		return player;
+	public boolean isOldSkinModel() {
+		return isOldSkinModel;
 	}
 
 	@Override
-	public void setPlayer(@Nullable EntityPlayerBridge entityPlayerBridge) {
-		player = entityPlayerBridge;
+	public void setOldSkinModel(boolean b) {
+		isOldSkinModel = b;
+	}
+
+	@Override
+	public boolean isSlimSkinModel() {
+		return isSlimSkinModel;
+	}
+
+	@Override
+	public void setSlimSkinModel(boolean b) {
+		isSlimSkinModel = b;
 	}
 }

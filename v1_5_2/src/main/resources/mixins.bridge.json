@@ -2,6 +2,10 @@
   "package": "io.github.orioncraftmc.orion.version.v1_5_2.mixins.bridge",
   "compatibilityLevel": "JAVA_17",
   "client": [
+	"entity.EntityLivingMixin",
+	"entity.EntityMixin",
+	"entity.EntityPlayerMixin",
+
 	"minecraft.GameSettingsMixin",
 	"minecraft.MinecraftMixin",
 	"minecraft.ScaledResolutionMixin",
@@ -13,8 +17,8 @@
 	"minecraft.input.KeybindingMixin",
 
 	"rendering.FontRendererMixin",
-	"rendering.TessellatorMixin",
-	"rendering.RenderEngineMixin"
+	"rendering.RenderEngineMixin",
+	"rendering.TessellatorMixin"
   ],
   "required": true
 }

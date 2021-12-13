@@ -17,8 +17,8 @@
 
 package io.github.orioncraftmc.orion.version.v1_5_2.mixins.backport.skins.render;
 
+import io.github.orioncraftmc.orion.api.bridge.entity.EntityPlayerBridge;
 import io.github.orioncraftmc.orion.version.v1_5_2.backport.skins.OrionModelPlayer;
-import io.github.orioncraftmc.orion.version.v1_5_2.backport.skins.ducks.EntityPlayerGameProfileDuck;
 import io.github.orioncraftmc.orion.version.v1_5_2.backport.skins.ducks.RenderPlayerDuck;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.RenderPlayer;
@@ -79,8 +79,8 @@ public class RenderPlayerMixin implements RenderPlayerDuck {
 
 	@Override
 	public ModelBiped getPlayerModelToRender(EntityPlayer entityPlayer) {
-		if (entityPlayer instanceof EntityPlayerGameProfileDuck duck) {
-			if (duck.isSlimSkin()) {
+		if (entityPlayer instanceof EntityPlayerBridge duck) {
+			if (duck.isSlimSkinModel()) {
 				return slimArmsModel;
 			} else if (duck.isOldSkinModel()) {
 				return oldSkinModel;

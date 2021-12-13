@@ -18,7 +18,6 @@
 package io.github.orioncraftmc.orion.version.v1_5_2.mixins.backport.skins.entity;
 
 import io.github.orioncraftmc.orion.backport.hooks.PlayerTexturesHook;
-import io.github.orioncraftmc.orion.version.v1_5_2.backport.skins.ducks.EntityPlayerGameProfileDuck;
 import io.github.orioncraftmc.orion.version.v1_5_2.mixins.backport.skins.extra.LivingEntityAccessor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
@@ -28,10 +27,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(EntityPlayer.class)
-public class EntityPlayerMixin implements EntityPlayerGameProfileDuck {
-
-	private boolean isSlimSkin;
-	private boolean isOldSkinModel;
+public class EntityPlayerMixin {
 
 	@Inject(method = "<init>", at = @At("RETURN"))
 	public void setNewSteveTexture(World par1, CallbackInfo ci) {
@@ -39,23 +35,4 @@ public class EntityPlayerMixin implements EntityPlayerGameProfileDuck {
 				PlayerTexturesHook.INSTANCE.getPlayerDefaultSkinResourceLocation().getFullPath());
 	}
 
-	@Override
-	public boolean isSlimSkin() {
-		return isSlimSkin;
-	}
-
-	@Override
-	public void setIsSlimSkin(boolean slimSkin) {
-		isSlimSkin = slimSkin;
-	}
-
-	@Override
-	public boolean isOldSkinModel() {
-		return isOldSkinModel;
-	}
-
-	@Override
-	public void setIsOldSkinModel(boolean oldSkinModel) {
-		isOldSkinModel = oldSkinModel;
-	}
 }

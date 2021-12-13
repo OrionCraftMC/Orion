@@ -17,12 +17,12 @@
 
 package io.github.orioncraftmc.orion.version.v1_5_2.mixins.backport.skins.render;
 
-import io.github.orioncraftmc.orion.version.v1_5_2.backport.skins.ducks.ImageBufferDownloadDuck;
+import io.github.orioncraftmc.orion.api.bridge.entity.EntityPlayerBridge;
+import io.github.orioncraftmc.orion.api.bridge.rendering.download.ImageBufferDownloadBridge;
 import net.minecraft.client.render.RenderEngine;
 import net.minecraft.client.render.RenderGlobal;
 import net.minecraft.client.renderer.ImageBufferDownload;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
 import net.optifine.Config;
 import net.optifine.RandomMobs;
 import org.jetbrains.annotations.NotNull;
@@ -58,8 +58,8 @@ public class RenderGlobalMixin {
 	@NotNull
 	private ImageBufferDownload createEntityBoundImageBufferDownload(Entity par1Entity) {
 		ImageBufferDownload skinBuffer = new ImageBufferDownload();
-		if (par1Entity instanceof EntityPlayer) {
-			((ImageBufferDownloadDuck) skinBuffer).setPlayer((EntityPlayer) par1Entity);
+		if (par1Entity instanceof EntityPlayerBridge bridge) {
+			((ImageBufferDownloadBridge) skinBuffer).setPlayer(bridge);
 		}
 		return skinBuffer;
 	}

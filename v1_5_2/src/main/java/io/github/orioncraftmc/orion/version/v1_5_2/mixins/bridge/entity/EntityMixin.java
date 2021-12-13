@@ -15,14 +15,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.orioncraftmc.orion.version.v1_5_2.backport.skins.ducks;
+package io.github.orioncraftmc.orion.version.v1_5_2.mixins.bridge.entity;
 
-public interface EntityPlayerGameProfileDuck {
-	boolean isSlimSkin();
+import io.github.orioncraftmc.orion.api.bridge.entity.EntityBridge;
+import net.minecraft.entity.Entity;
+import org.spongepowered.asm.mixin.Mixin;
 
-	void setIsSlimSkin(boolean slimSkin);
-
-	boolean isOldSkinModel();
-
-	void setIsOldSkinModel(boolean oldSkinModel);
+@Mixin(Entity.class)
+public abstract class EntityMixin implements EntityBridge {
 }

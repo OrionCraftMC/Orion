@@ -17,15 +17,14 @@
 
 package io.github.orioncraftmc.orion.version.v1_5_2.mixins.backport.skins.extra;
 
+import io.github.orioncraftmc.orion.api.bridge.entity.EntityPlayerBridge;
+import io.github.orioncraftmc.orion.api.bridge.rendering.download.ImageBufferDownloadBridge;
 import io.github.orioncraftmc.orion.backport.hooks.PlayerTexturesHook;
-import io.github.orioncraftmc.orion.version.v1_5_2.backport.skins.ducks.EntityPlayerGameProfileDuck;
-import io.github.orioncraftmc.orion.version.v1_5_2.backport.skins.ducks.ImageBufferDownloadDuck;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import net.minecraft.ThreadDownloadImage;
 import net.minecraft.client.renderer.IImageBuffer;
 import net.minecraft.client.renderer.ThreadDownloadImageData;
-import net.minecraft.entity.player.EntityPlayer;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
@@ -53,16 +52,16 @@ public class ThreadDownloadImageMixin {
 				location,
 				ci::cancel,
 				bufferedImage -> imageData.image = bufferedImage,
-				getPlayerSkinHandler(EntityPlayerGameProfileDuck::setIsSlimSkin),
-				getPlayerSkinHandler(EntityPlayerGameProfileDuck::setIsOldSkinModel)
+				getPlayerSkinHandler(EntityPlayerBridge::setSlimSkinModel),
+				getPlayerSkinHandler(EntityPlayerBridge::setOldSkinModel)
 		);
 	}
 
 	@Nullable
-	private Consumer<Boolean> getPlayerSkinHandler(BiConsumer<EntityPlayerGameProfileDuck, Boolean> consumer) {
-		if (buffer instanceof ImageBufferDownloadDuck) {
-			EntityPlayer player = ((ImageBufferDownloadDuck) buffer).getPlayer();
-			if (player != null) return value -> consumer.accept((EntityPlayerGameProfileDuck) player, value);
+	private Consumer<Boolean> getPlayerSkinHandler(BiConsumer<EntityPlayerBridge, Boolean> consumer) {
+		if (buffer instanceof ImageBufferDownloadBridge) {
+			EntityPlayerBridge player = ((ImageBufferDownloadBridge) buffer).getPlayer();
+			if (player != null) return value -> consumer.accept(player, value);
 		}
 		return null;
 	}
