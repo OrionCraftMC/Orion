@@ -17,6 +17,7 @@
 
 package io.github.orioncraftmc.orion.version.v1_5_2.mixins.backport.skins.entity;
 
+import java.util.UUID;
 import net.minecraft.client.entity.EntityOtherPlayerMP;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
@@ -39,7 +40,7 @@ public abstract class EntityPlayerEntityMixin extends Entity {
 	@Inject(method = "updateCloak", at = @At("HEAD"), cancellable = true)
 	public void onCloakUpdate(CallbackInfo ci) {
 		ci.cancel();
-		this.skinUrl = "orion_skin_" + getEntityName();
-		this.cloakUrl = "orion_cloak_" + getEntityName();
+		this.skinUrl = "orion_skin_" + UUID.randomUUID() + "_" + getEntityName();
+		this.cloakUrl = "orion_cloak_" + UUID.randomUUID() + "_" + getEntityName();
 	}
 }
