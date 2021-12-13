@@ -37,6 +37,8 @@ public class KeybindingUtilsImpl implements KeybindingUtils {
 		gameSettings.keyBindings = newKeyBindings;
 
 		KeyBinding.resetKeyBindingArrayAndHash();
+
+		gameSettings.loadOptions();
 	}
 
 	@NotNull
