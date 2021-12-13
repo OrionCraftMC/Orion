@@ -4,6 +4,7 @@
   "client": [
 	"controls.GuiOptionsMixin",
 	"controls.KeybindingMixin",
+	"controls.MinecraftMixin",
 
 	"skins.entity.EntityPlayerEntityMixin",
 	"skins.entity.EntityPlayerMixin",
