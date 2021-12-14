@@ -18,7 +18,7 @@
 package io.github.orioncraftmc.orion.version.v1_5_2.mixins.events;
 
 import io.github.orioncraftmc.orion.api.bridge.gui.GuiIngameBridge;
-import io.github.orioncraftmc.orion.api.event.EventBus;
+import io.github.orioncraftmc.orion.api.event.InstaEventBus;
 import io.github.orioncraftmc.orion.api.event.impl.HudRenderEvent;
 import net.minecraft.client.gui.GuiIngame;
 import org.spongepowered.asm.mixin.Mixin;
@@ -31,6 +31,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class GuiIngameMixin {
 	@Inject(method = "renderGameOverlay", at = @At(value = "INVOKE", shift = Shift.AFTER, target = "Lnet/minecraft/scoreboard/Scoreboard;func_96539_a(I)Lnet/minecraft/scoreboard/ScoreObjective;", ordinal = 1))
 	public void onRender(float f, boolean bl, int i, int j, CallbackInfo ci) {
-		EventBus.INSTANCE.callEvent(new HudRenderEvent(f, (GuiIngameBridge) this));
+		InstaEventBus.INSTANCE.post(new HudRenderEvent(f, (GuiIngameBridge) this));
 	}
 }
