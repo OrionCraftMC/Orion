@@ -39,7 +39,7 @@ public class RenderGlobalMixin {
 	 * @author OrionCraftMc
 	 */
 	@Overwrite
-	public void onEntityCreate(Entity par1Entity) {
+	public void onEntityAdded(Entity par1Entity) {
 		par1Entity.updateCloak();
 		if (par1Entity.skinUrl != null) {
 			this.renderEngine.obtainImageData(par1Entity.skinUrl, createEntityBoundImageBufferDownload(par1Entity));

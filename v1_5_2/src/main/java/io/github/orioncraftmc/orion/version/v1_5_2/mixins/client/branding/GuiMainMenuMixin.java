@@ -79,7 +79,7 @@ public abstract class GuiMainMenuMixin extends GuiScreen {
 	}
 
 	@Override
-	public void mouseMovedOrUp(int i, int j, int k) {
+	public void mouseReleased(int i, int j, int k) {
 		if (k == 0) {
 			orionMainMenu.handleMouseRelease(i, j);
 		} else {

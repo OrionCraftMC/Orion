@@ -41,7 +41,6 @@ public class MinecraftMixin {
 	private void onTickKeybinding(int i) {
 		KeyBinding.onTick(i);
 		checkTickTogglePerspectiveKey(i);
-
 	}
 
 	private void checkTickTogglePerspectiveKey(int i) {

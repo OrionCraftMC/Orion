@@ -39,7 +39,7 @@ public class PlayerUsageSnooperMixin {
 	 * @author OrionCraftMc
 	 */
 	@Overwrite
-	public void addBaseDataToSnooper() {
+	public void addOSData() {
 	}
 
 	/**
