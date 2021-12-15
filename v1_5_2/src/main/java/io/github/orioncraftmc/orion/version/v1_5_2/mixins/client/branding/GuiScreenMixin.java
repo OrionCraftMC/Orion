@@ -17,7 +17,9 @@
 
 package io.github.orioncraftmc.orion.version.v1_5_2.mixins.client.branding;
 
+import io.github.orioncraftmc.orion.api.bridge.gui.GuiScreenBridge;
 import io.github.orioncraftmc.orion.screens.GuiScreenOrionBrandingScreen;
+import io.github.orioncraftmc.orion.version.v1_5_2.bridge.gui.OrionGuiScreen;
 import net.minecraft.client.gui.GuiScreen;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -27,10 +29,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(GuiScreen.class)
 public class GuiScreenMixin {
 
-	private final GuiScreenOrionBrandingScreen gameGuiScreen = new GuiScreenOrionBrandingScreen();
+	private GuiScreenOrionBrandingScreen gameGuiScreen = null;
+
+	private GuiScreenBridge bridge$getGuiScreenBridge() {
+		return ((GuiScreen) (Object) this) instanceof OrionGuiScreen orionGuiScreen ? orionGuiScreen.getScreen() : (GuiScreenBridge) this;
+	}
 
 	@Inject(method = "drawWorldBackground", at = @At("RETURN"))
 	public void onDrawWorldBackground(int par1, CallbackInfo ci) {
+		if (gameGuiScreen == null) {
+			gameGuiScreen = new GuiScreenOrionBrandingScreen(bridge$getGuiScreenBridge());
+		}
 		gameGuiScreen.drawScreen();
 	}
 }
