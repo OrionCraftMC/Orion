@@ -1,7 +1,7 @@
 plugins {
     id("org.jetbrains.kotlin.jvm") version "1.6.0" apply false
     id("org.cadixdev.licenser") version "0.6.1" apply false
-    id("io.github.nickacpt.lightcraft.gradle") version "1.3.3-SNAPSHOT" apply false
+    id("io.github.nickacpt.lightcraft.gradle") version "1.3.4-SNAPSHOT" apply false
 
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
@@ -31,5 +31,9 @@ allprojects {
             "implementation"("io.github.orioncraftmc.orion:api:1.0-SNAPSHOT")
             "implementation"("io.github.orioncraftmc.orion:mods:1.0-SNAPSHOT")
         }
+
+        // Add files in folder "common" to the main source set.
+        sourceSets.main.get().java.srcDirs("src/common/main/java")
+        sourceSets.main.get().resources.srcDirs("src/common/main/resources")
     }
 }

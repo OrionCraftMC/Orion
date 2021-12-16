@@ -29,7 +29,7 @@ public abstract class FontRendererMixin {
 	public int FONT_HEIGHT;
 
 	@Shadow
-	public abstract int drawString(String par1Str, int par2, int par3, int par4, boolean par5);
+	public abstract int drawString(String text, int x, int y, int color, boolean dropShadow);
 
 	public void bridge$drawString(@NotNull String s, int i, int i1, int i2, boolean b) {
 		drawString(s, i, i1, i2, b);

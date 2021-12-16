@@ -30,7 +30,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(GuiIngame.class)
 public class GuiIngameMixin {
 	@Inject(method = "renderGameOverlay", at = @At(value = "INVOKE", shift = Shift.AFTER, target = "Lnet/minecraft/scoreboard/Scoreboard;getObjectiveInDisplaySlot(I)Lnet/minecraft/scoreboard/ScoreObjective;", ordinal = 1))
-	public void onRender(float f, boolean bl, int i, int j, CallbackInfo ci) {
-		InstaEventBus.INSTANCE.post(new HudRenderEvent(f, (GuiIngameBridge) this));
+	public void onRender(float bl, boolean i, int j, int par4, CallbackInfo ci) {
+		InstaEventBus.INSTANCE.post(new HudRenderEvent(bl, (GuiIngameBridge) this));
 	}
 }

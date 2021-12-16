@@ -1,0 +1,17 @@
+{
+  "package": "io.github.orioncraftmc.orion.version.v1_8_9.mixins.bridge",
+  "compatibilityLevel": "JAVA_17",
+  "client": [
+	"minecraft.GameSettingsMixin",
+	"minecraft.MinecraftMixin",
+
+	"minecraft.input.KeybindingMixin",
+
+	"minecraft.rendering.FontRendererMixin",
+	"minecraft.rendering.TessellatorMixin",
+	"minecraft.rendering.TextureManagerBridge",
+
+	"minecraft.resource.ResourceLocationMixin"
+  ],
+  "required": true
+}

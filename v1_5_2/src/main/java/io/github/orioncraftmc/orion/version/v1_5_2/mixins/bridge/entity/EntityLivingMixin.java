@@ -26,7 +26,7 @@ import org.spongepowered.asm.mixin.Shadow;
 @Mixin(EntityLiving.class)
 public abstract class EntityLivingMixin implements EntityLivingBridge {
 	@Shadow
-	protected String texture;
+	public String texture;
 
 	@NotNull
 	@Override
