@@ -15,27 +15,23 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.orioncraftmc.orion.version.v1_5_2.mixins.bridge.entity;
+package io.github.orioncraftmc.orion.version.v1_5_2.mixins.client;
 
-import io.github.orioncraftmc.orion.api.bridge.entity.EntityLivingBridge;
-import net.minecraft.entity.EntityLiving;
-import org.jetbrains.annotations.NotNull;
+import io.github.orioncraftmc.orion.api.OrionCraftConstants;
+import net.minecraft.client.ClientBrandRetriever;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Overwrite;
 
-@Mixin(EntityLiving.class)
-public abstract class EntityLivingMixin implements EntityLivingBridge {
-	@Shadow
-	protected String texture;
+@Mixin(ClientBrandRetriever.class)
+public class ClientBrandRetrieverMixin {
 
-	@NotNull
-	@Override
-	public String getTexture() {
-		return texture;
+	/**
+	 * @reason We change the client brand
+	 * @author OrionCraftMC
+	 */
+	@Overwrite
+	public static String getClientModName() {
+		return OrionCraftConstants.INSTANCE.getClientBrand();
 	}
 
-	@Override
-	public void setTexture(@NotNull String s) {
-		texture = s;
-	}
 }

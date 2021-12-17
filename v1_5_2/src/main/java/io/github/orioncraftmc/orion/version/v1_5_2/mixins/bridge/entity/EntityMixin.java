@@ -17,25 +17,10 @@
 
 package io.github.orioncraftmc.orion.version.v1_5_2.mixins.bridge.entity;
 
-import io.github.orioncraftmc.orion.api.bridge.entity.EntityLivingBridge;
-import net.minecraft.entity.EntityLiving;
-import org.jetbrains.annotations.NotNull;
+import io.github.orioncraftmc.orion.api.bridge.entity.EntityBridge;
+import net.minecraft.entity.Entity;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 
-@Mixin(EntityLiving.class)
-public abstract class EntityLivingMixin implements EntityLivingBridge {
-	@Shadow
-	protected String texture;
-
-	@NotNull
-	@Override
-	public String getTexture() {
-		return texture;
-	}
-
-	@Override
-	public void setTexture(@NotNull String s) {
-		texture = s;
-	}
+@Mixin(Entity.class)
+public abstract class EntityMixin implements EntityBridge {
 }

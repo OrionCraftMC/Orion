@@ -17,25 +17,32 @@
 
 package io.github.orioncraftmc.orion.version.v1_5_2.mixins.bridge.entity;
 
-import io.github.orioncraftmc.orion.api.bridge.entity.EntityLivingBridge;
-import net.minecraft.entity.EntityLiving;
-import org.jetbrains.annotations.NotNull;
+import io.github.orioncraftmc.orion.api.bridge.entity.EntityPlayerBridge;
+import net.minecraft.entity.player.EntityPlayer;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 
-@Mixin(EntityLiving.class)
-public abstract class EntityLivingMixin implements EntityLivingBridge {
-	@Shadow
-	protected String texture;
+@Mixin(EntityPlayer.class)
+public abstract class EntityPlayerMixin implements EntityPlayerBridge {
+	private boolean isSlimSkinModel = false;
+	private boolean isOldSkinModel = false;
 
-	@NotNull
 	@Override
-	public String getTexture() {
-		return texture;
+	public boolean isOldSkinModel() {
+		return isOldSkinModel;
 	}
 
 	@Override
-	public void setTexture(@NotNull String s) {
-		texture = s;
+	public void setOldSkinModel(boolean b) {
+		isOldSkinModel = b;
+	}
+
+	@Override
+	public boolean isSlimSkinModel() {
+		return isSlimSkinModel;
+	}
+
+	@Override
+	public void setSlimSkinModel(boolean b) {
+		isSlimSkinModel = b;
 	}
 }

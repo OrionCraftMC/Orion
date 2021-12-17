@@ -1,8 +1,0 @@
-{
-  "package": "io.github.orioncraftmc.orion.version.v1_8_9.mixins.client",
-  "compatibilityLevel": "JAVA_17",
-  "client": [
-	"MinecraftMixin"
-  ],
-  "required": true
-}

@@ -15,27 +15,20 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.orioncraftmc.orion.version.v1_5_2.mixins.bridge.entity;
+package io.github.orioncraftmc.orion.version.v1_5_2.mixins.events.settings;
 
-import io.github.orioncraftmc.orion.api.bridge.entity.EntityLivingBridge;
-import net.minecraft.entity.EntityLiving;
-import org.jetbrains.annotations.NotNull;
+import io.github.orioncraftmc.orion.api.event.EventBus;
+import io.github.orioncraftmc.orion.api.event.impl.GameSettingsLoadEvent;
+import net.minecraft.client.settings.GameSettings;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(EntityLiving.class)
-public abstract class EntityLivingMixin implements EntityLivingBridge {
-	@Shadow
-	protected String texture;
-
-	@NotNull
-	@Override
-	public String getTexture() {
-		return texture;
-	}
-
-	@Override
-	public void setTexture(@NotNull String s) {
-		texture = s;
+@Mixin(GameSettings.class)
+public class GameSettingsMixin {
+	@Inject(method = "loadOptions", at = @At("RETURN"))
+	public void onLoadOptions(CallbackInfo ci) {
+		EventBus.INSTANCE.callEvent(new GameSettingsLoadEvent());
 	}
 }

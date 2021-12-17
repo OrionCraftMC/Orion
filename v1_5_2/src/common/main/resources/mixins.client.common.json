@@ -1,8 +1,0 @@
-{
-  "package": "io.github.orioncraftmc.orion.version.common.mixins.client",
-  "compatibilityLevel": "JAVA_17",
-  "client": [
-	"ClientBrandRetrieverMixin"
-  ],
-  "required": true
-}

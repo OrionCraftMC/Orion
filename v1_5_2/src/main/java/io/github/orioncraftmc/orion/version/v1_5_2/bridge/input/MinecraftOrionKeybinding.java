@@ -15,27 +15,23 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package io.github.orioncraftmc.orion.version.v1_5_2.mixins.bridge.entity;
+package io.github.orioncraftmc.orion.version.v1_5_2.bridge.input;
 
-import io.github.orioncraftmc.orion.api.bridge.entity.EntityLivingBridge;
-import net.minecraft.entity.EntityLiving;
+import io.github.orioncraftmc.orion.api.keybinding.OrionKeybinding;
+import net.minecraft.client.settings.KeyBinding;
 import org.jetbrains.annotations.NotNull;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 
-@Mixin(EntityLiving.class)
-public abstract class EntityLivingMixin implements EntityLivingBridge {
-	@Shadow
-	protected String texture;
-
+public class MinecraftOrionKeybinding extends KeyBinding {
 	@NotNull
-	@Override
-	public String getTexture() {
-		return texture;
+	private final OrionKeybinding orionKeybinding;
+
+	public MinecraftOrionKeybinding(OrionKeybinding orionKeybinding) {
+		super(orionKeybinding.getId(), orionKeybinding.getKeyCode().getKeyCode());
+		this.orionKeybinding = orionKeybinding;
 	}
 
-	@Override
-	public void setTexture(@NotNull String s) {
-		texture = s;
+	@NotNull
+	public OrionKeybinding getOrionKeybinding() {
+		return orionKeybinding;
 	}
 }
