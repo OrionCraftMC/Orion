@@ -1,0 +1,13 @@
+{
+  "package": "io.github.orioncraftmc.orion.version.v1_8_9.mixins.fixes",
+  "compatibilityLevel": "JAVA_17",
+  "client": [
+	"mcoremove.GuiMainMenuMixin",
+
+	"settings.MinecraftMixin",
+
+	"snooper.GuiOptionsMixin",
+	"snooper.PlayerUsageSnooperMixin"
+  ],
+  "required": true
+}
