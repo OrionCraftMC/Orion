@@ -3,6 +3,7 @@
   "compatibilityLevel": "JAVA_17",
   "client": [
 	"GuiIngameMixin",
+	"action.MinecraftMixin",
 	"input.MinecraftMixin",
 	"settings.GameSettingsMixin"
   ],

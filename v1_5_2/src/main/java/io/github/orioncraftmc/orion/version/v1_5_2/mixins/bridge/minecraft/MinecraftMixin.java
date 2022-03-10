@@ -29,6 +29,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.render.RenderEngine;
 import net.minecraft.client.settings.GameSettings;
+import net.minecraft.util.StringTranslate;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
@@ -128,5 +129,11 @@ public abstract class MinecraftMixin implements MinecraftBridge {
 	@Override
 	public RenderEngineBridge getRenderEngine() {
 		return (RenderEngineBridge) renderEngine;
+	}
+
+	@NotNull
+	@Override
+	public String translateString(@NotNull String key) {
+		return StringTranslate.instance.translateKey(key);
 	}
 }
