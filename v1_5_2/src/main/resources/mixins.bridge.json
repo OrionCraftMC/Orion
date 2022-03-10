@@ -15,6 +15,7 @@
 	"minecraft.gui.GuiScreenMixin",
 
 	"minecraft.input.KeybindingMixin",
+	"minecraft.input.OrionKeybindingMixin",
 
 	"rendering.FontRendererMixin",
 	"rendering.RenderEngineMixin",

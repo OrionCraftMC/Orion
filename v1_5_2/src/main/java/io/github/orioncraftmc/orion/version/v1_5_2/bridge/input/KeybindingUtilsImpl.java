@@ -17,8 +17,7 @@
 
 package io.github.orioncraftmc.orion.version.v1_5_2.bridge.input;
 
-import io.github.orioncraftmc.orion.api.bridge.input.KeybindingUtils;
-import io.github.orioncraftmc.orion.api.bridge.input.VanillaKeybindingBridge;
+import io.github.orioncraftmc.orion.api.bridge.input.*;
 import io.github.orioncraftmc.orion.api.keybinding.OrionKeybinding;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.GameSettings;
@@ -43,9 +42,9 @@ public class KeybindingUtilsImpl implements KeybindingUtils {
 
 	@NotNull
 	@Override
-	public VanillaKeybindingBridge registerKeybinding(@NotNull OrionKeybinding orionKeybinding) {
+	public OrionKeybindingBridge registerKeybinding(@NotNull OrionKeybinding orionKeybinding) {
 		MinecraftOrionKeybinding orionKeybindingImpl = new MinecraftOrionKeybinding(orionKeybinding);
 		registerKeybinding(orionKeybindingImpl);
-		return (VanillaKeybindingBridge) orionKeybindingImpl;
+		return (OrionKeybindingBridge) orionKeybindingImpl;
 	}
 }
