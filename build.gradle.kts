@@ -19,6 +19,7 @@ allprojects {
     }
 
     apply(plugin = "org.cadixdev.licenser")
+    apply(plugin = "java-library-distribution")
 
     configure<org.cadixdev.gradle.licenser.LicenseExtension> {
         header(rootProject.file("HEADER"))
@@ -28,8 +29,7 @@ allprojects {
         apply(plugin = "org.jetbrains.kotlin.jvm")
 
         dependencies {
-            "implementation"("io.github.orioncraftmc.orion:api:1.0-SNAPSHOT")
-            "implementation"("io.github.orioncraftmc.orion:mods:1.0-SNAPSHOT")
+            "implementation"("io.github.orioncraftmc.orion:OrionCraft")
         }
     }
 }
