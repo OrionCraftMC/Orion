@@ -30,6 +30,9 @@ public class GameSettingsMixin implements GameSettingsBridge {
 	@Shadow
 	public int guiScale;
 
+	@Shadow
+	public boolean showDebugInfo;
+
 	@Override
 	public float getGammaValue() {
 		return gammaSetting;
@@ -43,5 +46,15 @@ public class GameSettingsMixin implements GameSettingsBridge {
 	@Override
 	public int getGuiScale() {
 		return guiScale;
+	}
+
+	@Override
+	public boolean isDebugInfoVisible() {
+		return showDebugInfo;
+	}
+
+	@Override
+	public void setDebugInfoVisible(boolean value) {
+		showDebugInfo = value;
 	}
 }
