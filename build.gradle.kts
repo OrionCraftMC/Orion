@@ -1,7 +1,7 @@
 plugins {
     id("org.jetbrains.kotlin.jvm") version "1.6.0" apply false
     id("org.cadixdev.licenser") version "0.6.1" apply false
-    id("io.github.nickacpt.lightcraft.gradle") version "1.3.3-SNAPSHOT" apply false
+    id("io.github.nickacpt.lightcraft.gradle") version "1.3.5-SNAPSHOT" apply false
 
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
