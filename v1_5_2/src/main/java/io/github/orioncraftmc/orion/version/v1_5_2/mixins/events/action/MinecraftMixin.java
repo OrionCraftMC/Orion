@@ -18,8 +18,7 @@
 package io.github.orioncraftmc.orion.version.v1_5_2.mixins.events.action;
 
 import io.github.orioncraftmc.orion.api.event.EventBus;
-import io.github.orioncraftmc.orion.api.event.impl.action.GameAction;
-import io.github.orioncraftmc.orion.api.event.impl.action.GameActionChangeEvent;
+import io.github.orioncraftmc.orion.api.event.impl.action.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.client.multiplayer.WorldClient;
@@ -36,6 +35,11 @@ public class MinecraftMixin {
 
 	@Inject(method = "loadWorld(Lnet/minecraft/client/multiplayer/WorldClient;Ljava/lang/String;)V", at = @At("RETURN"))
 	public void onLoadWorld(WorldClient worldClient, String splash, CallbackInfo ci) {
-		EventBus.INSTANCE.callEvent(new GameActionChangeEvent(currentServerData != null ? GameAction.MULTIPLAYER : GameAction.SINGLEPLAYER));
+		GameActionType gameActionType = currentServerData != null ? GameActionType.MULTIPLAYER : GameActionType.SINGLEPLAYER;
+		GameActionConnectionData connectionData = null;
+		if (currentServerData != null) {
+			connectionData = GameActionConnectionData.fromServerIp(currentServerData.serverIP);
+		}
+		EventBus.INSTANCE.callEvent(new GameActionChangeEvent(gameActionType, connectionData));
 	}
 }
