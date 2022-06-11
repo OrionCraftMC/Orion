@@ -21,14 +21,21 @@ import io.github.orioncraftmc.orion.api.OrionCraft;
 import io.github.orioncraftmc.orion.api.OrionCraftConstants;
 import io.github.orioncraftmc.orion.api.meta.ClientVersion;
 import io.github.orioncraftmc.orion.version.v1_5_2.bridge.OneDotFiveBridgeProvider;
+import java.io.File;
 import java.util.*;
 import net.minecraft.client.Minecraft;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Minecraft.class)
 public class MinecraftMixin {
+
+	@Inject(method = "getAppDir", at = @At("HEAD"), cancellable = true)
+	private static void onGetAppDir(String string, CallbackInfoReturnable<File> cir) {
+		cir.setReturnValue(new File("."));
+	}
 
 	@ModifyConstant(method = "main", constant = @Constant(stringValue = "Minecraft"))
 	private static String onSetFrameTitle(String original) {
