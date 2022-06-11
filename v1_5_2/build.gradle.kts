@@ -13,3 +13,7 @@ lightcraft {
         playerName = "NickAc"
     }
 }
+
+tasks.withType(JavaExec::class.java).forEach {
+    it.dependsOn(gradle.includedBuild("OrionCraft").task("build"))
+}
