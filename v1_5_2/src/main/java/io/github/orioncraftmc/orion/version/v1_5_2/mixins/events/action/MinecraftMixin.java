@@ -35,11 +35,7 @@ public class MinecraftMixin {
 
 	@Inject(method = "loadWorld(Lnet/minecraft/client/multiplayer/WorldClient;Ljava/lang/String;)V", at = @At("RETURN"))
 	public void onLoadWorld(WorldClient worldClient, String splash, CallbackInfo ci) {
-		GameActionType gameActionType = currentServerData != null ? GameActionType.MULTIPLAYER : GameActionType.SINGLEPLAYER;
-		GameActionConnectionData connectionData = null;
-		if (currentServerData != null) {
-			connectionData = GameActionConnectionData.fromServerIp(currentServerData.serverIP);
-		}
-		EventBus.INSTANCE.callEvent(new GameActionChangeEvent(gameActionType, connectionData));
+		GameAction gameActionType = currentServerData != null ? GameAction.MULTIPLAYER : GameAction.SINGLEPLAYER;
+		EventBus.INSTANCE.callEvent(new GameActionChangeEvent(gameActionType));
 	}
 }
