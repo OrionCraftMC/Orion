@@ -1,7 +1,7 @@
 plugins {
     id("org.jetbrains.kotlin.jvm") version "1.6.0" apply false
     id("org.cadixdev.licenser") version "0.6.1" apply false
-    id("io.github.nickacpt.lightcraft.gradle") version "2.0.5-SNAPSHOT" apply false
+    id("io.github.nickacpt.lightcraft.gradle") version "2.1.0-SNAPSHOT" apply false
 
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
@@ -19,17 +19,17 @@ allprojects {
     }
 
     apply(plugin = "org.cadixdev.licenser")
-    apply(plugin = "java-library-distribution")
 
     configure<org.cadixdev.gradle.licenser.LicenseExtension> {
         header(rootProject.file("HEADER"))
     }
 
     if (this != rootProject) {
+        apply(plugin = "java-library")
         apply(plugin = "org.jetbrains.kotlin.jvm")
 
         dependencies {
-            "implementation"("io.github.orioncraftmc.orion:OrionCraft")
+            "api"("io.github.orioncraftmc.orion:OrionCraft")
         }
     }
 }
