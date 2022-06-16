@@ -5,7 +5,8 @@
 	"GuiIngameMixin",
 	"action.MinecraftMixin",
 	"input.MinecraftMixin",
-	"settings.GameSettingsMixin"
+	"settings.GameSettingsMixin",
+	"ready.MinecraftMixin"
   ],
   "required": true
 }
