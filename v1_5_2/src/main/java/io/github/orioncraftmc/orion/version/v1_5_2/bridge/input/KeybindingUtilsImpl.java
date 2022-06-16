@@ -17,8 +17,10 @@
 
 package io.github.orioncraftmc.orion.version.v1_5_2.bridge.input;
 
-import io.github.orioncraftmc.orion.api.bridge.input.*;
+import io.github.orioncraftmc.orion.api.bridge.input.KeybindingUtils;
+import io.github.orioncraftmc.orion.api.bridge.input.OrionKeybindingBridge;
 import io.github.orioncraftmc.orion.api.keybinding.OrionKeybinding;
+import java.util.Objects;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.client.settings.KeyBinding;
@@ -35,6 +37,26 @@ public class KeybindingUtilsImpl implements KeybindingUtils {
 		newKeyBindings[keyBindings.length] = keybinding;
 		gameSettings.keyBindings = newKeyBindings;
 
+		KeyBinding.resetKeyBindingArrayAndHash();
+
+		gameSettings.loadOptions();
+	}
+
+	@Override
+	public void unregisterKeybinding(@NotNull OrionKeybindingBridge keybind) {
+		GameSettings gameSettings = Minecraft.getMinecraft().gameSettings;
+		KeyBinding[] keyBindings = gameSettings.keyBindings;
+		KeyBinding[] newKeyBindings = new KeyBinding[keyBindings.length - 1];
+
+		int i = 0;
+		for (KeyBinding existingKeybind : keyBindings) {
+			if (!existingKeybind.keyDescription.equals(keybind.getDescription())) {
+				newKeyBindings[i] = existingKeybind;
+				i++;
+			}
+		}
+
+		gameSettings.keyBindings = newKeyBindings;
 		KeyBinding.resetKeyBindingArrayAndHash();
 
 		gameSettings.loadOptions();
