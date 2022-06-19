@@ -6,7 +6,8 @@
 	"action.MinecraftMixin",
 	"input.MinecraftMixin",
 	"settings.GameSettingsMixin",
-	"ready.MinecraftMixin"
+	"ready.MinecraftMixin",
+	"tick.MinecraftMixin"
   ],
   "required": true
 }
