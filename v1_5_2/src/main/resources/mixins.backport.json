@@ -6,6 +6,10 @@
 	"controls.KeybindingMixin",
 	"controls.MinecraftMixin",
 
+    "ping.GuiSlotServerMixin",
+    "ping.ServerDataMixin",
+    "ping.ThreadPollServersMixin",
+
 	"skins.entity.EntityPlayerEntityMixin",
 	"skins.entity.EntityPlayerMixin",
 

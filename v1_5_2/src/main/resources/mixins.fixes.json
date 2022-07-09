@@ -4,6 +4,7 @@
   "client": [
 	"fps.EntityRenderMixin",
 
+	"misc.GuiSlotMixin",
 	"mcoremove.GuiMainMenuMixin",
 
 	"npefix.ServerListMixin",
