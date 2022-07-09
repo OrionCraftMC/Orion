@@ -26,6 +26,7 @@ import io.github.orioncraftmc.orion.version.v1_5_2.bridge.gui.OrionGuiScreen;
 import java.io.File;
 import net.minecraft.EntityClientPlayerMP;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.SoundManager;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.render.RenderEngine;
 import net.minecraft.client.settings.GameSettings;
@@ -51,14 +52,15 @@ public abstract class MinecraftMixin implements MinecraftBridge {
 	public FontRenderer fontRenderer;
 	@Shadow
 	public File mcDataDir;
-	@Shadow
-	public EntityClientPlayerMP thePlayer;
 
 	@Shadow
 	public abstract void displayGuiScreen(GuiScreen guiScreen);
 
 	@Shadow
 	public RenderEngine renderEngine;
+
+	@Shadow
+	public SoundManager sndManager;
 
 	@NotNull
 	@Override
@@ -135,5 +137,10 @@ public abstract class MinecraftMixin implements MinecraftBridge {
 	@Override
 	public String translateString(@NotNull String key) {
 		return StringTranslate.instance.translateKey(key);
+	}
+
+	@Override
+	public void playButtonClickSound() {
+		sndManager.playSoundFX("random.click", 1.0F, 1.0F);
 	}
 }
